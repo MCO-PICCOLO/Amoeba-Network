@@ -1,0 +1,23 @@
+#charts-area {
+  /* Frame 2087335270 */
+
+  box-sizing: border-box;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 36px;
+  gap: 9px;
+
+  position: absolute;
+  width: 780px;
+  height: 960px;
+  left: 1080px;
+  top: 60px;
+
+  background: rgba(255, 255, 255, 0.5);
+  border: 1.00985px solid rgba(255, 255, 255, 0.7);
+  border-radius: 30px;
+}

@@ -1,3 +1,4 @@
+import ChartsArea from '../components/ChartsArea';
 import VehicleArea from '../components/VehicleArea';
 import './RuntimeMonitoring.css';
 
@@ -7,6 +8,7 @@ const RuntimeMonitoring = ({}: RuntimeMonitoringProps) => {
   return (
     <div id="runtime-monitoring">
       <VehicleArea />
+      <ChartsArea />
     </div>
   );
 };

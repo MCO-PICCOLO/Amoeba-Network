@@ -39,10 +39,44 @@
   background: rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(15px);
-  /* Note: backdrop-filter has minimal browser support */
   border-radius: 30px;
 
-  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+}
+
+#vehicle-area .wheel-area {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 13px;
+
+  position: absolute;
+  width: 444px;
+  height: 210px;
+  left: 510px;
+  top: 40px;
+}
+
+#vehicle-area .wheel-area .wheel-inner-area {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  padding: 20px;
+  gap: 10px;
+
+  width: 444px;
+  height: 210px;
+
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(15px);
+  border-radius: 30px;
+
   flex: none;
   order: 0;
   flex-grow: 1;

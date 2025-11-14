@@ -1,10 +1,10 @@
-import './VehicleArea.css';
+import './ChartsArea.css';
 
-interface VehicleAreaProps {}
+interface ChartsAreaProps {}
 
-const VehicleArea = ({}: VehicleAreaProps) => {
+const ChartsArea = ({}: ChartsAreaProps) => {
   return (
-    <div id="vehicle-area">
+    <div id="charts-area">
       <div className="fan-area">
         <div className="fan-inner-area"></div>
       </div>
@@ -21,4 +21,4 @@ const VehicleArea = ({}: VehicleAreaProps) => {
   );
 };
 
-export default VehicleArea;
+export default ChartsArea;
