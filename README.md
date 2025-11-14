@@ -1,2 +1,2 @@
-# Amoeba-Deploy
+# Amoeba-Network
 Deployment monitoring system
