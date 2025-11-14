@@ -1,0 +1,7 @@
+#runtime-monitoring {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+
+  background-image: url('../assets/images/runtime-monitoring-bg.png');
+}
