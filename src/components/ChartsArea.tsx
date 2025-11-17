@@ -1,22 +1,33 @@
 import './ChartsArea.css';
+import MyLineChart from './MyLineChart';
 
 interface ChartsAreaProps {}
 
 const ChartsArea = ({}: ChartsAreaProps) => {
+  const tmpDistanceData = { title: 'Distance', value: [1, 2, 3] };
+  const tmpPWMdutyData = { title: 'PWM Duty', value: [4, 5, 6] };
+  const tmpSyncOffsetData = { title: 'Sync Offset', value: [7, 8, 9] };
+
   return (
     <div id="charts-area">
-      <div className="fan-area">
-        <div className="fan-inner-area"></div>
-      </div>
-      <div className="wheel-area">
-        <div className="wheel-inner-area"></div>
-      </div>
-      <div className="mcu-less-1 mcu-status-green"></div>
-      <div className="mcu-less-2 mcu-status-green"></div>
-      <div className="mcu-less-3 mcu-status-green"></div>
-      <div className="mcu-less-4 mcu-status-green"></div>
-      <div className="mcu-1 mcu-status-black"></div>
-      <div className="mcu-2 mcu-status-green"></div>
+      <MyLineChart
+        title={tmpDistanceData.title}
+        lineColor="#FF0AFB"
+        value={tmpDistanceData.value}
+        style={{ top: 30, left: 36, width: 708, height: 294 }}
+      />
+      <MyLineChart
+        title={tmpPWMdutyData.title}
+        lineColor="#800AFF"
+        value={tmpPWMdutyData.value}
+        style={{ top: 333, left: 36, width: 708, height: 294 }}
+      />
+      <MyLineChart
+        title={tmpSyncOffsetData.title}
+        lineColor="#01A4FF"
+        value={tmpSyncOffsetData.value}
+        style={{ top: 636, left: 36, width: 708, height: 294 }}
+      />
     </div>
   );
 };
