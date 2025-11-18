@@ -1,31 +1,40 @@
 import './ChartsArea.css';
 import MyLineChart from './MyLineChart';
 
-interface ChartsAreaProps {}
+interface LineChartData {
+  title: string;
+  value: number[];
+}
 
-const ChartsArea = ({}: ChartsAreaProps) => {
-  const tmpDistanceData = { title: 'Distance', value: [1, 2, 3] };
-  const tmpPWMdutyData = { title: 'PWM Duty', value: [4, 5, 6] };
-  const tmpSyncOffsetData = { title: 'Sync Offset', value: [7, 8, 9] };
+interface ChartsAreaProps {
+  distanceData: LineChartData;
+  pwmDutyData: LineChartData;
+  syncOffsetData: LineChartData;
+}
 
+const ChartsArea = ({
+  distanceData,
+  pwmDutyData,
+  syncOffsetData,
+}: ChartsAreaProps) => {
   return (
     <div id="charts-area">
       <MyLineChart
-        title={tmpDistanceData.title}
+        title={distanceData.title}
         lineColor="#FF0AFB"
-        value={tmpDistanceData.value}
+        value={distanceData.value}
         style={{ top: 30, left: 36, width: 708, height: 294 }}
       />
       <MyLineChart
-        title={tmpPWMdutyData.title}
+        title={pwmDutyData.title}
         lineColor="#800AFF"
-        value={tmpPWMdutyData.value}
+        value={pwmDutyData.value}
         style={{ top: 333, left: 36, width: 708, height: 294 }}
       />
       <MyLineChart
-        title={tmpSyncOffsetData.title}
+        title={syncOffsetData.title}
         lineColor="#01A4FF"
-        value={tmpSyncOffsetData.value}
+        value={syncOffsetData.value}
         style={{ top: 636, left: 36, width: 708, height: 294 }}
       />
     </div>
