@@ -10,85 +10,104 @@
   border-radius: 30px;
 }
 
-#vehicle-area .fan-area {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 0px;
-  gap: 13px;
-
+#vehicle-area .control-area {
   position: absolute;
-  width: 444px;
-  height: 210px;
-  left: 36px;
-  top: 40px;
-}
+  width: 266px;
+  height: 484px;
 
-#vehicle-area .fan-area .fan-inner-area {
   box-sizing: border-box;
 
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  padding: 20px;
-  gap: 10px;
+  position: relative;
+  width: 266px;
+  height: 484px;
+  left: 24px;
+  top: 16px;
 
-  width: 444px;
-  height: 210px;
-
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(15px);
+  /* background: rgba(255, 255, 255, 0.8); */
+  background-image: url('../assets/images/VehicleArea/control-bg.png');
+  /* border: 1px solid rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(15px); */
+  /* Note: backdrop-filter has minimal browser support */
   border-radius: 30px;
+}
 
+#vehicle-area .control-area .fan-start {
+  box-sizing: border-box;
+  position: absolute;
+  width: 108.5px;
+  height: 78px;
+  left: 27px;
+  top: 61.5px;
+  background: linear-gradient(90deg, #475af3 13.46%, #7040ff 96.17%);
+  background-image: url('../assets/images/VehicleArea/btn-start-selected.png');
+  border-radius: 27px;
   flex: none;
   order: 0;
   flex-grow: 1;
 }
 
-#vehicle-area .wheel-area {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 0px;
-  gap: 13px;
-
-  position: absolute;
-  width: 444px;
-  height: 210px;
-  left: 510px;
-  top: 40px;
+#vehicle-area .control-area .fan-start:active {
+  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
+  transform: scale(0.97);
 }
 
-#vehicle-area .wheel-area .wheel-inner-area {
-  box-sizing: border-box;
+#vehicle-area .control-area .fan-clear {
+  position: absolute;
+  width: 108.5px;
+  height: 78px;
+  left: 140.5px;
+  top: 61.5px;
 
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  padding: 20px;
-  gap: 10px;
+  background-image: url('../assets/images/VehicleArea/btn-clear-selected.png');
+  border-radius: 24px;
 
-  width: 444px;
-  height: 210px;
-
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(15px);
-  border-radius: 30px;
-
+  /* Inside auto layout */
   flex: none;
-  order: 0;
+  order: 1;
   flex-grow: 1;
 }
+#vehicle-area .control-area .fan-clear:active {
+  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
+  transform: scale(0.97);
+}
 
-#vehicle-area .mcu-status-black {
+#vehicle-area .control-area .fan-deaccel {
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 108.5px;
+  height: 78px;
+  left: 27px;
+  top: 148.5px;
 
-  background: #1d1d1d;
-  border-radius: 50%;
+  background-image: url('../assets/images/VehicleArea/btn-deaccel-normal.png');
+  border-radius: 24px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 2;
+  flex-grow: 1;
+}
+#vehicle-area .control-area .fan-deaccel:active {
+  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
+  transform: scale(0.97);
+}
+#vehicle-area .control-area .fan-accel {
+  position: absolute;
+  width: 108.5px;
+  height: 78px;
+  left: 140.5px;
+  top: 148.5px;
+
+  background-image: url('../assets/images/VehicleArea/btn-accel-normal.png');
+  border-radius: 24px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 3;
+  flex-grow: 1;
+}
+#vehicle-area .control-area .fan-accel:active {
+  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
+  transform: scale(0.97);
 }
 
 #vehicle-area .mcu-status-green {
