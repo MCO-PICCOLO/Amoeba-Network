@@ -1,9 +1,8 @@
 import ChartsArea from '../components/ChartsArea';
 import VehicleArea from '../components/VehicleArea';
-import './RuntimeMonitoring.css';
-import { useEffect, useRef } from 'react';
 import { getNetworkInfo } from '../utils/RestApi';
-import { useState } from 'react';
+import './RuntimeMonitoring.css';
+import { useEffect, useRef, useState } from 'react';
 
 interface RuntimeMonitoringProps {}
 
@@ -16,8 +15,12 @@ const RuntimeMonitoring = ({}: RuntimeMonitoringProps) => {
     title: 'PWM Duty',
     value: Array(30).fill(0),
   });
-  const [syncOffsetData, setSyncOffsetData] = useState({
-    title: 'Sync Offset',
+  const [syncOffset1Data, setSyncOffset1Data] = useState({
+    title: 'Sync Offset 1',
+    value: Array(30).fill(0),
+  });
+  const [syncOffset2Data, setSyncOffset2Data] = useState({
+    title: 'Sync Offset 2',
     value: Array(30).fill(0),
   });
   const timerRef = useRef<number | null>(null);
@@ -35,7 +38,8 @@ const RuntimeMonitoring = ({}: RuntimeMonitoringProps) => {
         const response = await getNetworkInfo();
         const distance = response?.NetworkInfo.Graph?.MCULess1?.distance ?? 0;
         const duty = response?.NetworkInfo.Graph?.MCULess3?.duty ?? 0;
-        const offset = response?.NetworkInfo.Graph?.MCU1?.TimesyncOffset ?? 0;
+        const offset1 = response?.NetworkInfo.Graph?.MCU1?.TimesyncOffset ?? 0;
+        const offset2 = response?.NetworkInfo.Graph?.MCU2?.TimesyncOffset ?? 0;
 
         setDistanceData((prev) => ({
           ...prev,
@@ -45,9 +49,13 @@ const RuntimeMonitoring = ({}: RuntimeMonitoringProps) => {
           ...prev,
           value: pushValue(prev.value, duty),
         }));
-        setSyncOffsetData((prev) => ({
+        setSyncOffset1Data((prev) => ({
           ...prev,
-          value: pushValue(prev.value, offset),
+          value: pushValue(prev.value, offset1),
+        }));
+        setSyncOffset2Data((prev) => ({
+          ...prev,
+          value: pushValue(prev.value, offset2),
         }));
       } catch (e) {
         // 에러 처리
@@ -69,7 +77,8 @@ const RuntimeMonitoring = ({}: RuntimeMonitoringProps) => {
       <ChartsArea
         distanceData={distanceData}
         pwmDutyData={pwmDutyData}
-        syncOffsetData={syncOffsetData}
+        syncOffset1Data={syncOffset1Data}
+        syncOffset2Data={syncOffset2Data}
       />
     </div>
   );

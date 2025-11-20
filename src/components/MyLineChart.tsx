@@ -9,32 +9,48 @@ import {
 import './MyLineChart.css';
 import type { HTMLAttributes } from 'react';
 
+interface LineDataSet {
+  key: string;
+  color: string;
+  data: number[];
+}
+
 interface MyLineChartsProps extends HTMLAttributes<HTMLDivElement> {
   title: string;
-  lineColor: string;
-  value?: number[];
+  yDomain?: [number, number];
+  datasets: LineDataSet[];
+  unit?: string;
 }
 
 const MyLineCharts = ({
   title,
-  lineColor,
-  value = [],
+  yDomain = [0, 1000],
+  datasets,
+  unit = '',
   ...props
 }: MyLineChartsProps) => {
   const fixedMaxTime = 30;
-  const n = value.length;
-  const data: Array<{ time: number; v: number | null }> = Array.from(
-    { length: fixedMaxTime },
-    (_v, i) => {
-      if (n === 0) return { time: i + 1, v: null };
-      if (n < fixedMaxTime) {
-        const v = i < n ? value[i] : null;
-        return { time: i + 1, v };
-      }
-      const slice = value.slice(-fixedMaxTime);
-      return { time: i + 1, v: slice[i] ?? null };
-    },
-  );
+
+  const data: Array<{ time: number; [key: string]: number | null }> =
+    Array.from({ length: fixedMaxTime }, (_v, i) => {
+      const point: { time: number; [key: string]: number | null } = {
+        time: i + 1,
+      };
+
+      datasets.forEach((dataset) => {
+        const n = dataset.data.length;
+        if (n === 0) {
+          point[dataset.key] = null;
+        } else if (n < fixedMaxTime) {
+          point[dataset.key] = i < n ? dataset.data[i] : null;
+        } else {
+          const slice = dataset.data.slice(-fixedMaxTime);
+          point[dataset.key] = slice[i] ?? null;
+        }
+      });
+
+      return point;
+    });
   const domainMax = fixedMaxTime;
   const xTicks = [5, 10, 15, 20, 25, 30];
   return (
@@ -64,9 +80,10 @@ const MyLineCharts = ({
             }}
           />
           <YAxis
-            width={40}
-            domain={[0, 40]}
+            width={50}
+            domain={yDomain}
             axisLine={false}
+            tickFormatter={(value) => `${value}${unit}`}
             tick={{
               fontFamily: 'Pretendard, Arial, sans-serif',
               fontStyle: 'normal',
@@ -75,18 +92,21 @@ const MyLineCharts = ({
               fill: '#1D1D1D',
             }}
           />
-          <Line
-            type="natural"
-            dataKey="v"
-            stroke={lineColor}
-            strokeWidth={3}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            dot={false}
-            activeDot={false}
-            isAnimationActive={false}
-            connectNulls={false}
-          />
+          {datasets.map((dataset) => (
+            <Line
+              key={dataset.key}
+              type="natural"
+              dataKey={dataset.key}
+              stroke={dataset.color}
+              strokeWidth={3}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              dot={false}
+              activeDot={false}
+              isAnimationActive={false}
+              connectNulls={false}
+            />
+          ))}
         </LineChart>
       </ResponsiveContainer>
     </div>
