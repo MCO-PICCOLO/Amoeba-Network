@@ -1,9 +1,21 @@
 import './VehicleArea.css';
-import { postFanStart, postFanClear, postFanAccel, postFanDeaccel } from '../utils/RestApi';
+import {
+  postFanStart,
+  postFanClear,
+  postFanAccel,
+  postFanDeaccel,
+} from '../utils/RestApi';
 
-interface VehicleAreaProps {}
+interface MCUStatus {
+  status: 'on' | 'off';
+  rtt: number;
+}
 
-const VehicleArea = ({}: VehicleAreaProps) => {
+interface VehicleAreaProps {
+  mcuStatus: MCUStatus[];
+}
+
+const VehicleArea = ({ mcuStatus }: VehicleAreaProps) => {
   const handleFanStart = async () => {
     try {
       await postFanStart();
@@ -37,12 +49,47 @@ const VehicleArea = ({}: VehicleAreaProps) => {
         <div className="wheela-auto"></div>
         <div className="wheela-cali"></div>
       </div>
-      <div className="mcu-less-1 mcu-status-green"></div>
-      <div className="mcu-less-2 mcu-status-green"></div>
-      <div className="mcu-less-3 mcu-status-green"></div>
-      <div className="mcu-less-4 mcu-status-green"></div>
-      <div className="mcu-1 mcu-status-black"></div>
-      <div className="mcu-2 mcu-status-green"></div>
+      <div className="mcu-less-1-rtt">{mcuStatus[0].rtt}μs</div>
+      <div
+        className={`mcu-less-1 ${
+          mcuStatus[0].status === 'on' ? 'mcu-status-green' : 'mcu-status-black'
+        }`}
+      ></div>
+
+      <div className="mcu-less-2-rtt">{mcuStatus[1].rtt}μs</div>
+      <div
+        className={`mcu-less-2 ${
+          mcuStatus[1].status === 'on' ? 'mcu-status-green' : 'mcu-status-black'
+        }`}
+      ></div>
+
+      <div className="mcu-1-rtt">{mcuStatus[2].rtt}μs</div>
+      <div
+        className={`mcu-1 ${
+          mcuStatus[2].status === 'on' ? 'mcu-status-green' : 'mcu-status-black'
+        }`}
+      ></div>
+
+      <div className="mcu-2-rtt">{mcuStatus[3].rtt}μs</div>
+      <div
+        className={`mcu-2 ${
+          mcuStatus[3].status === 'on' ? 'mcu-status-green' : 'mcu-status-black'
+        }`}
+      ></div>
+
+      <div className="mcu-less-3-rtt">{mcuStatus[4].rtt}μs</div>
+      <div
+        className={`mcu-less-3 ${
+          mcuStatus[4].status === 'on' ? 'mcu-status-green' : 'mcu-status-black'
+        }`}
+      ></div>
+
+      <div className="mcu-less-4-rtt">{mcuStatus[5].rtt}μs</div>
+      <div
+        className={`mcu-less-4 ${
+          mcuStatus[5].status === 'on' ? 'mcu-status-green' : 'mcu-status-black'
+        }`}
+      ></div>
     </div>
   );
 };

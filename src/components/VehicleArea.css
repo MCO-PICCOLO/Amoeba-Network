@@ -119,14 +119,33 @@
   border-radius: 50%;
 }
 
-#vehicle-area .mcu-1 {
-  left: 272px;
-  top: 811px;
+#vehicle-area .mcu-status-black {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+
+  background: #000000;
+  border-radius: 50%;
 }
 
-#vehicle-area .mcu-2 {
-  left: 812px;
-  top: 811px;
+#vehicle-area .mcu-less-1-rtt {
+  position: absolute;
+  /* width: 56px; */
+  height: 22px;
+  left: 191px;
+  top: 563px;
+
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 22px;
+  /* identical to box height, or 92% */
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #1d1d1d;
 }
 
 #vehicle-area .mcu-less-1 {
@@ -134,17 +153,137 @@
   top: 579px;
 }
 
+#vehicle-area .mcu-less-2-rtt {
+  /* 65us */
+
+  position: absolute;
+  /* width: 56px; */
+  height: 22px;
+  left: 731px;
+  top: 561px;
+
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 22px;
+  /* identical to box height, or 92% */
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #1d1d1d;
+}
+
 #vehicle-area .mcu-less-2 {
   left: 812px;
   top: 579px;
 }
 
-#vehicle-area .mcu-less-3 {
+#vehicle-area .mcu-1-rtt {
+  /* 65us */
+
+  position: absolute;
+  /* width: 56px; */
+  height: 22px;
+  left: 191px;
+  top: 679px;
+
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 22px;
+  /* identical to box height, or 92% */
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #1d1d1d;
+}
+
+#vehicle-area .mcu-1 {
   left: 272px;
   top: 694px;
 }
 
-#vehicle-area .mcu-less-4 {
+#vehicle-area .mcu-2-rtt {
+  /* 65us */
+
+  position: absolute;
+  /* width: 56px; */
+  height: 22px;
+  left: 731px;
+  top: 677px;
+
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 22px;
+  /* identical to box height, or 92% */
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #1d1d1d;
+}
+
+#vehicle-area .mcu-2 {
   left: 812px;
   top: 693px;
+}
+
+#vehicle-area .mcu-less-3-rtt {
+  /* 65us */
+
+  position: absolute;
+  /* width: 56px; */
+  height: 22px;
+  left: 191px;
+  top: 795px;
+
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 22px;
+  /* identical to box height, or 92% */
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #1d1d1d;
+}
+
+#vehicle-area .mcu-less-3 {
+  left: 272px;
+  top: 811px;
+}
+
+#vehicle-area .mcu-less-4-rtt {
+  /* 65us */
+
+  position: absolute;
+  /* width: 56px; */
+  height: 22px;
+  left: 731px;
+  top: 793px;
+
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 22px;
+  /* identical to box height, or 92% */
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #1d1d1d;
+}
+
+#vehicle-area .mcu-less-4 {
+  left: 812px;
+  top: 811px;
 }
