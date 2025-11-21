@@ -82,6 +82,7 @@ const MyLineCharts = ({
           <YAxis
             width={50}
             domain={yDomain}
+            allowDataOverflow={false}
             axisLine={false}
             tickFormatter={(value) => `${value}${unit}`}
             tick={{
