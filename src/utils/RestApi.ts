@@ -65,3 +65,43 @@ export const postFanDeaccel = async () => {
     throw error;
   }
 };
+
+export const postWheelStart = async () => {
+  try {
+    const response = await networkApi.post('/api/wheel/start');
+    return response.data;
+  } catch (error) {
+    console.error('Error starting wheel:', error);
+    throw error;
+  }
+};
+
+export const postWheelStop = async () => {
+  try {
+    const response = await networkApi.post('/api/wheel/stop');
+    return response.data;
+  } catch (error) {
+    console.error('Error stopping wheel:', error);
+    throw error;
+  }
+};
+
+export const postWheelAuto = async () => {
+  try {
+    const response = await networkApi.post('/api/wheel/auto');
+    return response.data;
+  } catch (error) {
+    console.error('Error setting wheel to auto:', error);
+    throw error;
+  }
+};
+
+export const postWheelCalibration = async () => {
+  try {
+    const response = await networkApi.post('/api/wheel/calibration');
+    return response.data;
+  } catch (error) {
+    console.error('Error calibrating wheel:', error);
+    throw error;
+  }
+};

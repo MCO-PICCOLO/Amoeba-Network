@@ -4,6 +4,10 @@ import {
   postFanClear,
   postFanAccel,
   postFanDeaccel,
+  postWheelStart,
+  postWheelStop,
+  postWheelAuto,
+  postWheelCalibration,
 } from '../utils/RestApi';
 
 interface MCUStatus {
@@ -37,6 +41,30 @@ const VehicleArea = ({ mcuStatus }: VehicleAreaProps) => {
     } catch (e) {}
   };
 
+  const handleWheelStart = async () => {
+    try {
+      await postWheelStart();
+    } catch (e) {}
+  };
+
+  const handleWheelStop = async () => {
+    try {
+      await postWheelStop();
+    } catch (e) {}
+  };
+
+  const handleWheelAuto = async () => {
+    try {
+      await postWheelAuto();
+    } catch (e) {}
+  };
+
+  const handleWheelCalibration = async () => {
+    try {
+      await postWheelCalibration();
+    } catch (e) {}
+  };
+
   return (
     <div id="vehicle-area">
       <div className="control-area">
@@ -44,10 +72,10 @@ const VehicleArea = ({ mcuStatus }: VehicleAreaProps) => {
         <div className="fan-clear" onClick={handleFanClear}></div>
         <div className="fan-deaccel" onClick={handleFanDeaccel}></div>
         <div className="fan-accel" onClick={handleFanAccel}></div>
-        <div className="wheel-start"></div>
-        <div className="wheel-stop"></div>
-        <div className="wheela-auto"></div>
-        <div className="wheela-cali"></div>
+        <div className="wheel-start" onClick={handleWheelStart}></div>
+        <div className="wheel-stop" onClick={handleWheelStop}></div>
+        <div className="wheel-auto" onClick={handleWheelAuto}></div>
+        <div className="wheel-cali" onClick={handleWheelCalibration}></div>
       </div>
       <div className="mcu-less-1-rtt">{mcuStatus[0].rtt}μs</div>
       <div

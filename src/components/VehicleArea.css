@@ -110,6 +110,89 @@
   transform: scale(0.97);
 }
 
+#vehicle-area .control-area .wheel-start {
+  position: absolute;
+  width: 108px;
+  height: 78px;
+  left: 20px;
+  top: 302px;
+  box-sizing: border-box;
+
+  background-image: url('../assets/images/VehicleArea/btn-wheel-start.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 27px;
+  cursor: pointer;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 3;
+  flex-grow: 1;
+}
+
+#vehicle-area .control-area .wheel-start:active {
+  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
+  transform: scale(0.97);
+}
+
+#vehicle-area .control-area .wheel-stop {
+  position: absolute;
+  width: 108px;
+  height: 78px;
+  left: 138px;
+  top: 302px;
+  box-sizing: border-box;
+
+  background-image: url('../assets/images/VehicleArea/btn-wheel-stop.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+#vehicle-area .control-area .wheel-stop:active {
+  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
+  transform: scale(0.97);
+}
+
+#vehicle-area .control-area .wheel-auto {
+  position: absolute;
+  width: 108px;
+  height: 78px;
+  left: 20px;
+  top: 383.5px;
+
+  background-image: url('../assets/images/VehicleArea/btn-wheel-auto.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+#vehicle-area .control-area .wheel-auto:active {
+  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
+  transform: scale(0.97);
+}
+
+#vehicle-area .control-area .wheel-cali {
+  position: absolute;
+  width: 108px;
+  height: 78px;
+  left: 138px;
+  top: 383.5px;
+
+  background-image: url('../assets/images/VehicleArea/btn-wheel-cali.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+#vehicle-area .control-area .wheel-cali:active {
+  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
+  transform: scale(0.97);
+}
+
 #vehicle-area .mcu-status-green {
   position: absolute;
   width: 30px;
