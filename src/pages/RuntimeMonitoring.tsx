@@ -1,6 +1,30 @@
 import ChartsArea from '../components/ChartsArea';
 import VehicleArea from '../components/VehicleArea';
 import { getNetworkInfo } from '../utils/RestApi';
+// import { getNetworkInfo } from '../utils/RestApi';
+// 샘플 데이터 반환 함수
+const getSampleNetworkInfo = async () => {
+  // Helper to randomly pick 'on' or 'off'
+  const randStatus = () => (Math.random() > 0.5 ? 'on' : 'off') as 'on' | 'off';
+  return {
+    NetworkInfo: {
+      Graph: {
+        MCULess1: { distance: Math.random() * 100 },
+        MCULess3: { duty: Math.random() * 100 },
+        MCU1: { TimesyncOffset: Math.random() * 10 },
+        MCU2: { TimesyncOffset: Math.random() * 10 },
+      },
+      RttInfo: {
+        MCULess1: { status: randStatus(), rtt: Math.random() * 10 },
+        MCULess2: { status: randStatus(), rtt: Math.random() * 10 },
+        MCU1: { status: randStatus(), rtt: Math.random() * 10 },
+        MCU2: { status: randStatus(), rtt: Math.random() * 10 },
+        MCULess3: { status: randStatus(), rtt: Math.random() * 10 },
+        MCULess4: { status: randStatus(), rtt: Math.random() * 10 },
+      },
+    },
+  };
+};
 import './RuntimeMonitoring.css';
 import { useEffect, useRef, useState } from 'react';
 
@@ -49,6 +73,7 @@ const RuntimeMonitoring = ({}: RuntimeMonitoringProps) => {
       if (!isMounted) return;
       try {
         const response = await getNetworkInfo();
+        // const response = await getSampleNetworkInfo();
         const distance = response?.NetworkInfo.Graph?.MCULess1?.distance ?? 0;
         const duty = response?.NetworkInfo.Graph?.MCULess3?.duty ?? 0;
         const offset1 = response?.NetworkInfo.Graph?.MCU1?.TimesyncOffset ?? 0;

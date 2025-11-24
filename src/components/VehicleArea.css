@@ -1,5 +1,16 @@
+#vehicle-area .control-area .popup-area .btn-area .top .fan-start:active,
+#vehicle-area .control-area .popup-area .btn-area .top .fan-clear:active,
+#vehicle-area .control-area .popup-area .btn-area .top .wheel-auto:active,
+#vehicle-area .control-area .popup-area .btn-area .top .wheel-cali:active,
+#vehicle-area .control-area .popup-area .btn-area .bottom .fan-up:active,
+#vehicle-area .control-area .popup-area .btn-area .bottom .fan-down:active,
+#vehicle-area .control-area .popup-area .btn-area .bottom .wheel-start:active,
+#vehicle-area .control-area .popup-area .btn-area .bottom .wheel-clear:active {
+  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
+  transform: scale(0.97);
+}
 #vehicle-area {
-  position: absolute;
+  position: relative;
   width: 990px;
   height: 960px;
   left: 60px;
@@ -11,192 +22,336 @@
 }
 
 #vehicle-area .control-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 10px;
+
   position: absolute;
   width: 266px;
-  height: 484px;
-
-  box-sizing: border-box;
-
-  position: relative;
-  width: 266px;
-  height: 484px;
-  left: 24px;
-  top: 16px;
-
-  /* background: rgba(255, 255, 255, 0.8); */
+  height: 273px;
+  left: 30px;
+  top: 30px;
   background-image: url('../assets/images/VehicleArea/control-bg.png');
-  /* border: 1px solid rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(15px); */
-  /* Note: backdrop-filter has minimal browser support */
-  border-radius: 30px;
 }
 
-#vehicle-area .control-area .fan-start {
-  box-sizing: border-box;
-  position: absolute;
-  width: 108.5px;
-  height: 78px;
-  left: 27px;
-  top: 61.5px;
-  background: linear-gradient(90deg, #475af3 13.46%, #7040ff 96.17%);
-  background-image: url('../assets/images/VehicleArea/btn-start-selected.png');
-  border-radius: 27px;
+#vehicle-area .control-area .popup-area {
+  /* popup_area */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 20px;
+
+  width: 226px;
+  height: 233px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+#vehicle-area .control-area .popup-area .tabber {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 8px;
+
+  width: 226px;
+  height: 49px;
+
+  border-radius: 10px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+#vehicle-area .control-area .popup-area .tabber .tabber-left {
+  /* left */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0px;
+  gap: 10px;
+
+  width: 109px;
+  height: 49px;
+
+  background-image: url('../assets/images/VehicleArea/btn-fan-normal.png');
+  /* Inside auto layout */
   flex: none;
   order: 0;
   flex-grow: 1;
 }
 
-#vehicle-area .control-area .fan-start:active {
-  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
-  transform: scale(0.97);
+#vehicle-area .control-area .popup-area .tabber .tabber-left.selected {
+  background-image: url('../assets/images/VehicleArea/btn-fan-selected.png');
 }
 
-#vehicle-area .control-area .fan-clear {
-  position: absolute;
-  width: 108.5px;
-  height: 78px;
-  left: 140.5px;
-  top: 61.5px;
+#vehicle-area .control-area .popup-area .tabber .tabber-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0px;
+  gap: 10px;
 
-  background-image: url('../assets/images/VehicleArea/btn-clear-selected.png');
-  border-radius: 24px;
+  width: 109px;
+  height: 49px;
 
+  background-image: url('../assets/images/VehicleArea/btn-wheel-normal.png');
   /* Inside auto layout */
   flex: none;
   order: 1;
   flex-grow: 1;
 }
-#vehicle-area .control-area .fan-clear:active {
-  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
-  transform: scale(0.97);
+#vehicle-area .control-area .popup-area .tabber .tabber-right.selected {
+  background-image: url('../assets/images/VehicleArea/btn-wheel-selected.png');
 }
 
-#vehicle-area .control-area .fan-deaccel {
-  position: absolute;
-  width: 108.5px;
-  height: 78px;
-  left: 27px;
-  top: 148.5px;
+#vehicle-area .control-area .popup-area .btn-area {
+  /* btn_area */
 
-  background-image: url('../assets/images/VehicleArea/btn-deaccel-normal.png');
-  border-radius: 24px;
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+
+  width: 226px;
+  height: 164px;
 
   /* Inside auto layout */
   flex: none;
-  order: 2;
-  flex-grow: 1;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
 }
-#vehicle-area .control-area .fan-deaccel:active {
-  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
-  transform: scale(0.97);
-}
-#vehicle-area .control-area .fan-accel {
-  position: absolute;
-  width: 108.5px;
-  height: 78px;
-  left: 140.5px;
-  top: 148.5px;
 
-  background-image: url('../assets/images/VehicleArea/btn-accel-normal.png');
-  border-radius: 24px;
+#vehicle-area .control-area .popup-area .btn-area .top {
+  /* top */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 10px;
+
+  width: 226px;
+  height: 78px;
 
   /* Inside auto layout */
   flex: none;
-  order: 3;
-  flex-grow: 1;
-}
-#vehicle-area .control-area .fan-accel:active {
-  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
-  transform: scale(0.97);
+  order: 1;
+  flex-grow: 0;
 }
 
-#vehicle-area .control-area .wheel-start {
-  position: absolute;
-  width: 108px;
-  height: 78px;
-  left: 20px;
-  top: 302px;
+#vehicle-area .control-area .popup-area .btn-area .top .fan-start {
+  /* left */
+
   box-sizing: border-box;
 
-  background-image: url('../assets/images/VehicleArea/btn-wheel-start.png');
-  background-size: cover;
-  background-position: center;
-  border-radius: 27px;
-  cursor: pointer;
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 6px;
+
+  width: 108px;
+  height: 78px;
+
+  background: #ffffff;
+  border-radius: 10px;
 
   /* Inside auto layout */
   flex: none;
-  order: 3;
+  order: 0;
   flex-grow: 1;
+
+  background-image: url('../assets/images/VehicleArea/btn-fan-start.png');
 }
 
-#vehicle-area .control-area .wheel-start:active {
-  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
-  transform: scale(0.97);
-}
+#vehicle-area .control-area .popup-area .btn-area .top .fan-clear {
+  /* right */
 
-#vehicle-area .control-area .wheel-stop {
-  position: absolute;
-  width: 108px;
-  height: 78px;
-  left: 138px;
-  top: 302px;
   box-sizing: border-box;
 
-  background-image: url('../assets/images/VehicleArea/btn-wheel-stop.png');
-  background-size: cover;
-  background-position: center;
-  border-radius: 24px;
-  cursor: pointer;
-}
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 6px;
 
-#vehicle-area .control-area .wheel-stop:active {
-  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
-  transform: scale(0.97);
-}
-
-#vehicle-area .control-area .wheel-auto {
-  position: absolute;
   width: 108px;
   height: 78px;
-  left: 20px;
-  top: 383.5px;
 
+  background: #ffffff;
+  border-radius: 10px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 1;
+
+  background-image: url('../assets/images/VehicleArea/btn-fan-clear.png');
+}
+
+#vehicle-area .control-area .popup-area .btn-area .top .wheel-auto {
+  /* left */
+
+  box-sizing: border-box;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 6px;
+
+  width: 107.5px;
+  height: 78px;
+
+  background: #ffffff;
+  border-radius: 10px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 1;
   background-image: url('../assets/images/VehicleArea/btn-wheel-auto.png');
-  background-size: cover;
-  background-position: center;
-  border-radius: 24px;
-  cursor: pointer;
 }
 
-#vehicle-area .control-area .wheel-auto:active {
-  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
-  transform: scale(0.97);
-}
+#vehicle-area .control-area .popup-area .btn-area .top .wheel-cali {
+  /* right */
 
-#vehicle-area .control-area .wheel-cali {
-  position: absolute;
-  width: 108px;
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 10px;
+
+  width: 108.5px;
   height: 78px;
-  left: 138px;
-  top: 383.5px;
+
+  background: #ffffff;
+  border-radius: 10px;
 
   background-image: url('../assets/images/VehicleArea/btn-wheel-cali.png');
-  background-size: cover;
-  background-position: center;
-  border-radius: 24px;
-  cursor: pointer;
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
 }
 
-#vehicle-area .control-area .wheel-cali:active {
-  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
-  transform: scale(0.97);
+#vehicle-area .control-area .popup-area .btn-area .bottom {
+  /* bottom */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 10px;
+
+  width: 226px;
+  height: 78px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+#vehicle-area .control-area .popup-area .btn-area .bottom .fan-up {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 6px;
+  width: 108px;
+  height: 78px;
+  background: #ffffff;
+  border-radius: 10px;
+  flex: 1 1 0;
+  background-image: url('../assets/images/VehicleArea/btn-fan-up.png');
+}
+
+#vehicle-area .control-area .popup-area .btn-area .bottom .fan-down {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 6px;
+  width: 108px;
+  height: 78px;
+  background: #ffffff;
+  border-radius: 10px;
+  flex: 1 1 0;
+  background-image: url('../assets/images/VehicleArea/btn-fan-down.png');
+}
+
+#vehicle-area .control-area .popup-area .btn-area .bottom .wheel-start {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 6px;
+  width: 108px;
+  height: 78px;
+  background: #ffffff;
+  border-radius: 10px;
+  flex: 1 1 0;
+  background-image: url('../assets/images/VehicleArea/btn-wheel-start.png');
+}
+
+#vehicle-area .control-area .popup-area .btn-area .bottom .wheel-clear {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 6px;
+  width: 108px;
+  height: 78px;
+  background: #ffffff;
+  border-radius: 10px;
+  flex: 1 1 0;
+  background-image: url('../assets/images/VehicleArea/btn-wheel-clear.png');
 }
 
 #vehicle-area .mcu-status-green {
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 11px;
+  height: 11px;
 
   background: #3dec94;
   border-radius: 50%;
@@ -204,169 +359,169 @@
 
 #vehicle-area .mcu-status-black {
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 11px;
+  height: 11px;
 
   background: #000000;
   border-radius: 50%;
 }
 
 #vehicle-area .mcu-less-1-rtt {
+  /* 65us */
+
   position: absolute;
-  /* width: 56px; */
+  /* width: 106px; */
   height: 22px;
-  left: 191px;
-  top: 563px;
+  left: 195px;
+  top: 565px;
 
   font-family: 'Pretendard';
   font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
+  font-weight: 400;
+  font-size: 20px;
   line-height: 22px;
-  /* identical to box height, or 92% */
+  /* identical to box height, or 110% */
   display: flex;
   align-items: center;
   text-align: center;
 
-  color: #1d1d1d;
+  color: #ffffff;
 }
 
 #vehicle-area .mcu-less-1 {
-  left: 272px;
-  top: 579px;
+  left: 262px;
+  top: 590px;
 }
 
 #vehicle-area .mcu-less-2-rtt {
   /* 65us */
 
   position: absolute;
-  /* width: 56px; */
+  /* width: 46px; */
   height: 22px;
-  left: 731px;
-  top: 561px;
+  left: 719px;
+  top: 565px;
 
   font-family: 'Pretendard';
   font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
+  font-weight: 400;
+  font-size: 20px;
   line-height: 22px;
-  /* identical to box height, or 92% */
+  /* identical to box height, or 110% */
   display: flex;
   align-items: center;
   text-align: center;
 
-  color: #1d1d1d;
+  color: #ffffff;
 }
 
 #vehicle-area .mcu-less-2 {
-  left: 812px;
-  top: 579px;
+  left: 756px;
+  top: 590px;
 }
 
 #vehicle-area .mcu-1-rtt {
   /* 65us */
 
   position: absolute;
-  /* width: 56px; */
+  width: 106px;
   height: 22px;
-  left: 191px;
-  top: 679px;
+  left: 195px;
+  top: 685px;
 
   font-family: 'Pretendard';
   font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
+  font-weight: 400;
+  font-size: 20px;
   line-height: 22px;
-  /* identical to box height, or 92% */
+  /* identical to box height, or 110% */
   display: flex;
   align-items: center;
   text-align: center;
 
-  color: #1d1d1d;
+  color: #ffffff;
 }
 
 #vehicle-area .mcu-1 {
-  left: 272px;
-  top: 694px;
+  left: 262px;
+  top: 710px;
 }
 
 #vehicle-area .mcu-2-rtt {
   /* 65us */
 
   position: absolute;
-  /* width: 56px; */
+  width: 72.87px;
   height: 22px;
-  left: 731px;
-  top: 677px;
+  left: 719px;
+  top: 685px;
 
   font-family: 'Pretendard';
   font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
+  font-weight: 400;
+  font-size: 20px;
   line-height: 22px;
-  /* identical to box height, or 92% */
+  /* identical to box height, or 110% */
   display: flex;
   align-items: center;
   text-align: center;
 
-  color: #1d1d1d;
+  color: #ffffff;
 }
 
 #vehicle-area .mcu-2 {
-  left: 812px;
-  top: 693px;
+  left: 756px;
+  top: 710px;
 }
 
 #vehicle-area .mcu-less-3-rtt {
   /* 65us */
 
   position: absolute;
-  /* width: 56px; */
+  width: 106px;
   height: 22px;
-  left: 191px;
-  top: 795px;
+  left: 195px;
+  top: 806px;
 
   font-family: 'Pretendard';
   font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
+  font-weight: 400;
+  font-size: 20px;
   line-height: 22px;
-  /* identical to box height, or 92% */
+  /* identical to box height, or 110% */
   display: flex;
   align-items: center;
   text-align: center;
 
-  color: #1d1d1d;
+  color: #ffffff;
 }
 
 #vehicle-area .mcu-less-3 {
-  left: 272px;
-  top: 811px;
+  left: 262px;
+  top: 831px;
 }
 
 #vehicle-area .mcu-less-4-rtt {
-  /* 65us */
-
   position: absolute;
-  /* width: 56px; */
+  width: 46px;
   height: 22px;
-  left: 731px;
-  top: 793px;
+  left: 718px;
+  top: 806px;
 
   font-family: 'Pretendard';
   font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
+  font-weight: 400;
+  font-size: 20px;
   line-height: 22px;
-  /* identical to box height, or 92% */
+  /* identical to box height, or 110% */
   display: flex;
   align-items: center;
   text-align: center;
 
-  color: #1d1d1d;
+  color: #ffffff;
 }
 
 #vehicle-area .mcu-less-4 {
-  left: 812px;
-  top: 811px;
+  left: 756px;
+  top: 831px;
 }
