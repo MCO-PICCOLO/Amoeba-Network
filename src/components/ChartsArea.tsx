@@ -25,14 +25,14 @@ const ChartsArea = ({
         title={distanceData.title}
         yDomain={[0, 1000]}
         datasets={[
-          { key: 'distance', color: '#FF0AFB', data: distanceData.value },
+          { key: 'Sensor1', color: '#FF0AFB', data: distanceData.value },
         ]}
         style={{ top: 30, left: 36, width: 708, height: 294 }}
       />
       <MyLineChart
         title={pwmDutyData.title}
         yDomain={[0, 100]}
-        datasets={[{ key: 'duty', color: '#800AFF', data: pwmDutyData.value }]}
+        datasets={[{ key: 'Fan 1', color: '#800AFF', data: pwmDutyData.value }]}
         unit="%"
         style={{ top: 333, left: 36, width: 708, height: 294 }}
       />
@@ -40,8 +40,8 @@ const ChartsArea = ({
         title="Sync Offset"
         yDomain={[0, 100]}
         datasets={[
-          { key: 'offset1', color: '#01A4FF', data: syncOffset1Data.value },
-          { key: 'offset2', color: '#FF5722', data: syncOffset2Data.value },
+          { key: 'MCU 1', color: '#01A4FF', data: syncOffset1Data.value },
+          { key: 'MCU 2', color: '#FF5722', data: syncOffset2Data.value },
         ]}
         unit="μs"
         style={{ top: 636, left: 36, width: 708, height: 294 }}

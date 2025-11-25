@@ -5,6 +5,7 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
+  Legend,
 } from 'recharts';
 import './MyLineChart.css';
 import type { HTMLAttributes } from 'react';
@@ -106,8 +107,18 @@ const MyLineCharts = ({
               activeDot={false}
               isAnimationActive={false}
               connectNulls={false}
+              name={dataset.key}
             />
           ))}
+          <Legend
+            verticalAlign="top"
+            align="right"
+            iconType="plainline"
+            wrapperStyle={{
+              fontSize: 14,
+              fontFamily: 'Pretendard, Arial, sans-serif',
+            }}
+          />
         </LineChart>
       </ResponsiveContainer>
     </div>
