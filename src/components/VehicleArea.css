@@ -211,10 +211,10 @@
   order: 1;
   flex-grow: 1;
 
-  background-image: url('../assets/images/VehicleArea/btn-fan-clear.png');
+  background-image: url('../assets/images/VehicleArea/bt-stop.png');
 }
 
-#vehicle-area .control-area .popup-area .btn-area .top .wheel-auto {
+#vehicle-area .control-area .popup-area .btn-area .wheel-auto {
   /* left */
 
   box-sizing: border-box;
@@ -240,7 +240,7 @@
   background-image: url('../assets/images/VehicleArea/btn-wheel-auto.png');
 }
 
-#vehicle-area .control-area .popup-area .btn-area .top .wheel-cali {
+#vehicle-area .control-area .popup-area .btn-area .wheel-cali {
   /* right */
 
   /* Auto layout */
@@ -316,7 +316,7 @@
   background-image: url('../assets/images/VehicleArea/btn-fan-down.png');
 }
 
-#vehicle-area .control-area .popup-area .btn-area .bottom .wheel-start {
+#vehicle-area .control-area .popup-area .btn-area .wheel-start {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -332,7 +332,7 @@
   background-image: url('../assets/images/VehicleArea/btn-wheel-start.png');
 }
 
-#vehicle-area .control-area .popup-area .btn-area .bottom .wheel-clear {
+#vehicle-area .control-area .popup-area .btn-area .wheel-clear {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -345,7 +345,7 @@
   background: #ffffff;
   border-radius: 10px;
   flex: 1 1 0;
-  background-image: url('../assets/images/VehicleArea/btn-wheel-clear.png');
+  background-image: url('../assets/images/VehicleArea/bt-stop.png');
 }
 
 #vehicle-area .mcu-status-green {

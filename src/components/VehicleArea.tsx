@@ -97,11 +97,8 @@ const VehicleArea = ({ mcuStatus }: VehicleAreaProps) => {
                 </>
               ) : (
                 <>
-                  <div className="wheel-auto" onClick={handleWheelAuto}></div>
-                  <div
-                    className="wheel-cali"
-                    onClick={handleWheelCalibration}
-                  ></div>
+                  <div className="wheel-start" onClick={handleWheelStart}></div>
+                  <div className="wheel-clear" onClick={handleWheelStop}></div>
                 </>
               )}
             </div>
@@ -113,8 +110,11 @@ const VehicleArea = ({ mcuStatus }: VehicleAreaProps) => {
                 </>
               ) : (
                 <>
-                  <div className="wheel-start" onClick={handleWheelStart}></div>
-                  <div className="wheel-clear" onClick={handleWheelStop}></div>
+                  <div className="wheel-auto" onClick={handleWheelAuto}></div>
+                  <div
+                    className="wheel-cali"
+                    onClick={handleWheelCalibration}
+                  ></div>
                 </>
               )}
             </div>
