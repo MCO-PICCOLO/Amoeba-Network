@@ -1,11 +1,11 @@
 #vehicle-area .control-area .popup-area .btn-area .top .fan-start:active,
 #vehicle-area .control-area .popup-area .btn-area .top .fan-clear:active,
-#vehicle-area .control-area .popup-area .btn-area .top .wheel-auto:active,
-#vehicle-area .control-area .popup-area .btn-area .top .wheel-cali:active,
+#vehicle-area .control-area .popup-area .btn-area .wheel-auto:active,
+#vehicle-area .control-area .popup-area .btn-area .wheel-cali:active,
 #vehicle-area .control-area .popup-area .btn-area .bottom .fan-up:active,
 #vehicle-area .control-area .popup-area .btn-area .bottom .fan-down:active,
-#vehicle-area .control-area .popup-area .btn-area .bottom .wheel-start:active,
-#vehicle-area .control-area .popup-area .btn-area .bottom .wheel-clear:active {
+#vehicle-area .control-area .popup-area .btn-area .wheel-start:active,
+#vehicle-area .control-area .popup-area .btn-area .wheel-clear:active {
   filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
   transform: scale(0.97);
 }
