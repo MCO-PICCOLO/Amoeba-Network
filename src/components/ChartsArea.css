@@ -6,18 +6,19 @@
   /* Auto layout */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   padding: 30px 36px;
   gap: 9px;
 
   position: absolute;
   width: 780px;
-  height: 960px;
+  height: 1000px;
   left: 1080px;
   top: 60px;
 
   background: rgba(255, 255, 255, 0.5);
   border: 1.00985px solid rgba(255, 255, 255, 0.7);
   border-radius: 30px;
+  overflow-y: auto;
 }

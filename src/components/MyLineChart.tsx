@@ -5,7 +5,7 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Legend,
+  ReferenceLine,
 } from 'recharts';
 import './MyLineChart.css';
 import type { HTMLAttributes } from 'react';
@@ -21,6 +21,7 @@ interface MyLineChartsProps extends HTMLAttributes<HTMLDivElement> {
   yDomain?: [number, number];
   datasets: LineDataSet[];
   unit?: string;
+  maxLineY?: number;
 }
 
 const MyLineCharts = ({
@@ -28,6 +29,7 @@ const MyLineCharts = ({
   yDomain = [0, 1000],
   datasets,
   unit = '',
+  maxLineY,
   ...props
 }: MyLineChartsProps) => {
   const fixedMaxTime = 30;
@@ -56,71 +58,85 @@ const MyLineCharts = ({
   const xTicks = [5, 10, 15, 20, 25, 30];
   return (
     <div className="line-chart" {...props}>
-      <div className="title">{title}</div>
-      <ResponsiveContainer width="100%" height={266}>
-        <LineChart
-          data={data}
-          margin={{ top: 5, right: 0, left: 0, bottom: 5 }}
-        >
-          <CartesianGrid
-            strokeDasharray="3 3"
-            horizontal={true}
-            vertical={false}
-          />
-          <XAxis
-            dataKey="time"
-            type="number"
-            domain={[1, domainMax]}
-            ticks={xTicks}
-            tick={{
-              fontFamily: 'Pretendard, Arial, sans-serif',
-              fontStyle: 'normal',
-              fontWeight: 500,
-              fontSize: 16,
-              fill: '#1D1D1D',
-            }}
-          />
-          <YAxis
-            width={50}
-            domain={yDomain}
-            allowDataOverflow={false}
-            axisLine={false}
-            tickFormatter={(value) => `${value}${unit}`}
-            tick={{
-              fontFamily: 'Pretendard, Arial, sans-serif',
-              fontStyle: 'normal',
-              fontWeight: 500,
-              fontSize: 16,
-              fill: '#1D1D1D',
-            }}
-          />
-          {datasets.map((dataset) => (
-            <Line
-              key={dataset.key}
-              type="natural"
-              dataKey={dataset.key}
-              stroke={dataset.color}
-              strokeWidth={3}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              dot={false}
-              activeDot={false}
-              isAnimationActive={false}
-              connectNulls={false}
-              name={dataset.key}
-            />
+      <div className="chart-title-legend">
+        <div className="chart-title">{title}</div>
+        <div className="chart-legend">
+          {datasets.map((dataset, index) => (
+            <div key={`legend-${index}`} className="legend-item">
+              <div
+                className="legend-icon"
+                style={{ borderColor: dataset.color }}
+              />
+              <span className="legend-label">{dataset.key}</span>
+            </div>
           ))}
-          <Legend
-            verticalAlign="top"
-            align="right"
-            iconType="plainline"
-            wrapperStyle={{
-              fontSize: 14,
-              fontFamily: 'Pretendard, Arial, sans-serif',
-            }}
-          />
-        </LineChart>
-      </ResponsiveContainer>
+        </div>
+      </div>
+      <div style={{ position: 'absolute', top: '66px', left: '40px' }}>
+        <ResponsiveContainer width={668} height={223}>
+          <LineChart
+            data={data}
+            margin={{ top: 5, right: 0, left: 0, bottom: 5 }}
+          >
+            <CartesianGrid
+              strokeDasharray="3 3"
+              horizontal={true}
+              vertical={false}
+            />
+            <XAxis
+              dataKey="time"
+              type="number"
+              domain={[1, domainMax]}
+              ticks={xTicks}
+              tick={{
+                fontFamily: 'Pretendard, Arial, sans-serif',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                fontSize: 16,
+                fill: '#1D1D1D',
+              }}
+            />
+            <YAxis
+              width={50}
+              domain={yDomain}
+              allowDataOverflow={false}
+              axisLine={false}
+              tickFormatter={(value) => `${value}${unit}`}
+              tick={{
+                fontFamily: 'Pretendard, Arial, sans-serif',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                fontSize: 16,
+                fill: '#1D1D1D',
+              }}
+            />
+            {datasets.map((dataset) => (
+              <Line
+                key={dataset.key}
+                type="natural"
+                dataKey={dataset.key}
+                stroke={dataset.color}
+                strokeWidth={3}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                dot={false}
+                activeDot={false}
+                isAnimationActive={false}
+                connectNulls={false}
+                name={dataset.key}
+              />
+            ))}
+            {maxLineY !== undefined && (
+              <ReferenceLine
+                y={maxLineY}
+                stroke="#FF0000"
+                strokeDasharray="5 5"
+                strokeWidth={2}
+              />
+            )}
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 };

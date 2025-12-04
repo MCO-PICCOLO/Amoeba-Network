@@ -1,50 +1,75 @@
 import './ChartsArea.css';
 import MyLineChart from './MyLineChart';
 
-interface LineChartData {
+interface ChartDataset {
+  key: string;
+  color: string;
+}
+
+interface ChartConfig {
   title: string;
-  value: number[];
+  yDomain: [number, number];
+  datasets: ChartDataset[];
+  unit?: string;
 }
 
 interface ChartsAreaProps {
-  distanceData: LineChartData;
-  pwmDutyData: LineChartData;
-  syncOffset1Data: LineChartData;
-  syncOffset2Data: LineChartData;
+  distanceChartData: {
+    sensor1: number[];
+    sensor2: number[];
+  };
+  rttChartData: {
+    mcu1: number[];
+    mcu2: number[];
+    swLess1: number[];
+    swLess2: number[];
+  };
+  syncOffsetChartData: {
+    mcu1: number[];
+    mcu2: number[];
+  };
+  syncOffsetMaxValue?: number;
 }
 
 const ChartsArea = ({
-  distanceData,
-  pwmDutyData,
-  syncOffset1Data,
-  syncOffset2Data,
+  distanceChartData,
+  rttChartData,
+  syncOffsetChartData,
+  syncOffsetMaxValue = 250,
 }: ChartsAreaProps) => {
   return (
     <div id="charts-area">
       <MyLineChart
-        title={distanceData.title}
+        title="Distance"
         yDomain={[0, 1000]}
         datasets={[
-          { key: 'Sensor1', color: '#FF0AFB', data: distanceData.value },
+          { key: 'Sensor1', color: '#FF0AFB', data: distanceChartData.sensor1 },
+          { key: 'Sensor2', color: '#00D4FF', data: distanceChartData.sensor2 },
         ]}
-        style={{ top: 30, left: 36, width: 708, height: 294 }}
+        style={{ position: 'relative', width: '100%', height: 294 }}
       />
       <MyLineChart
-        title={pwmDutyData.title}
-        yDomain={[0, 100]}
-        datasets={[{ key: 'Fan 1', color: '#800AFF', data: pwmDutyData.value }]}
-        unit="%"
-        style={{ top: 333, left: 36, width: 708, height: 294 }}
-      />
-      <MyLineChart
-        title="Sync Offset"
+        title="RTT (Round Trip Time)"
         yDomain={[0, 100]}
         datasets={[
-          { key: 'MCU 1', color: '#01A4FF', data: syncOffset1Data.value },
-          { key: 'MCU 2', color: '#FF5722', data: syncOffset2Data.value },
+          { key: 'MCU1', color: '#01A4FF', data: rttChartData.mcu1 },
+          { key: 'MCU2', color: '#FF5722', data: rttChartData.mcu2 },
+          { key: 'SW-less1', color: '#4CAF50', data: rttChartData.swLess1 },
+          { key: 'SW-less2', color: '#FFC107', data: rttChartData.swLess2 },
+        ]}
+        unit="ms"
+        style={{ position: 'relative', width: '100%', height: 294 }}
+      />
+      <MyLineChart
+        title="Time Sync Offset"
+        yDomain={[0, 500]}
+        datasets={[
+          { key: 'MCU 1', color: '#01A4FF', data: syncOffsetChartData.mcu1 },
+          { key: 'MCU 2', color: '#FF5722', data: syncOffsetChartData.mcu2 },
         ]}
         unit="μs"
-        style={{ top: 636, left: 36, width: 708, height: 294 }}
+        maxLineY={syncOffsetMaxValue}
+        style={{ position: 'relative', width: '100%', height: 294 }}
       />
     </div>
   );
