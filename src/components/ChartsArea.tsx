@@ -1,17 +1,17 @@
 import './ChartsArea.css';
 import MyLineChart from './MyLineChart';
 
-interface ChartDataset {
-  key: string;
-  color: string;
-}
+// interface ChartDataset {
+//   key: string;
+//   color: string;
+// }
 
-interface ChartConfig {
-  title: string;
-  yDomain: [number, number];
-  datasets: ChartDataset[];
-  unit?: string;
-}
+// interface ChartConfig {
+//   title: string;
+//   yDomain: [number, number];
+//   datasets: ChartDataset[];
+//   unit?: string;
+// }
 
 interface ChartsAreaProps {
   distanceChartData: {

@@ -36,12 +36,12 @@ export const postFanStart = async () => {
   }
 };
 
-export const postFanClear = async () => {
+export const postFanStop = async () => {
   try {
-    const response = await networkApi.post('/api/fan/clear');
+    const response = await networkApi.post('/api/fan/stop');
     return response.data;
   } catch (error) {
-    console.error('Error clearing fan:', error);
+    console.error('Error stopping fan:', error);
     throw error;
   }
 };
@@ -102,6 +102,27 @@ export const postWheelCalibration = async () => {
     return response.data;
   } catch (error) {
     console.error('Error calibrating wheel:', error);
+    throw error;
+  }
+};
+
+interface DeployConfig {
+  mappingInfo: {
+    sensor: string[];
+    fan: string[];
+  };
+  condition: {
+    sensitivity: string;
+  };
+  safety_enabled: boolean;
+}
+
+export const postDeploy = async (config: DeployConfig) => {
+  try {
+    const response = await networkApi.post('/api/config/deploy', config);
+    return response.data;
+  } catch (error) {
+    console.error('Error deploying config:', error);
     throw error;
   }
 };

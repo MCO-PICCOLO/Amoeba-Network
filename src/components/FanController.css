@@ -29,8 +29,10 @@
 
 #fan-controller .inner-area {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   padding: 0px;
   gap: 8px;
 
@@ -42,4 +44,100 @@
   order: 0;
   align-self: stretch;
   flex-grow: 0;
+}
+
+#fan-controller .inner-area .left-top {
+  width: 110px;
+  height: 78px;
+
+  background-image: url('../assets/images/VehicleArea/btn-fan-start.png');
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+#fan-controller .inner-area .left-top:hover {
+  filter: brightness(1.1);
+}
+
+#fan-controller .inner-area .left-top:active {
+  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
+  transform: scale(0.97);
+}
+
+#fan-controller .inner-area .right-top {
+  width: 110px;
+  height: 78px;
+
+  background-image: url('../assets/images/VehicleArea/btn-fan-clear.png');
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+#fan-controller .inner-area .right-top:hover {
+  filter: brightness(1.1);
+}
+
+#fan-controller .inner-area .right-top:active {
+  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
+  transform: scale(0.97);
+}
+
+#fan-controller .inner-area .left-bottom {
+  width: 110px;
+  height: 78px;
+
+  background-image: url('../assets/images/VehicleArea/btn-fan-down.png');
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+#fan-controller .inner-area .left-bottom:hover {
+  filter: brightness(1.1);
+}
+
+#fan-controller .inner-area .left-bottom:active {
+  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
+  transform: scale(0.97);
+}
+
+#fan-controller .inner-area .right-bottom {
+  width: 110px;
+  height: 78px;
+
+  background-image: url('../assets/images/VehicleArea/btn-fan-up.png');
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+#fan-controller .inner-area .right-bottom:hover {
+  filter: brightness(1.1);
+}
+
+#fan-controller .inner-area .right-bottom:active {
+  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
+  transform: scale(0.97);
 }

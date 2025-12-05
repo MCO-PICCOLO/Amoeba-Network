@@ -3,8 +3,9 @@ import { useState } from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import FanController from './FanController';
 import WheelController from './WheelController';
+import SensorFanMatchingController from './SensorFanMatchingController';
 
-const CONTROL_MODE = {
+export const CONTROL_MODE = {
   FAN_ONLY: 'Fan Only',
   WHEEL_ONLY: 'Wheel Only',
   SENSOR_1_FAN: 'Sensor 1: Fan1,2',
@@ -28,48 +29,6 @@ const VehicleArea = ({ mcuStatus }: VehicleAreaProps) => {
   const [selectedMode, setSelectedMode] = useState<ControlMode>(
     CONTROL_MODE.SELECT_ITEM,
   );
-
-  // Handler functions (currently unused - can be used for button click events)
-  // const handleFanStart = async () => {
-  //   try {
-  //     await postFanStart();
-  //   } catch (e) {}
-  // };
-  // const handleFanClear = async () => {
-  //   try {
-  //     await postFanClear();
-  //   } catch (e) {}
-  // };
-  // const handleFanAccel = async () => {
-  //   try {
-  //     await postFanAccel();
-  //   } catch (e) {}
-  // };
-  // const handleFanDeaccel = async () => {
-  //   try {
-  //     await postFanDeaccel();
-  //   } catch (e) {}
-  // };
-  // const handleWheelStart = async () => {
-  //   try {
-  //     await postWheelStart();
-  //   } catch (e) {}
-  // };
-  // const handleWheelStop = async () => {
-  //   try {
-  //     await postWheelStop();
-  //   } catch (e) {}
-  // };
-  // const handleWheelAuto = async () => {
-  //   try {
-  //     await postWheelAuto();
-  //   } catch (e) {}
-  // };
-  // const handleWheelCalibration = async () => {
-  //   try {
-  //     await postWheelCalibration();
-  //   } catch (e) {}
-  // };
 
   return (
     <div id="vehicle-area">
@@ -141,6 +100,11 @@ const VehicleArea = ({ mcuStatus }: VehicleAreaProps) => {
       </DropdownMenu.Root>
       {selectedMode === CONTROL_MODE.FAN_ONLY && <FanController />}
       {selectedMode === CONTROL_MODE.WHEEL_ONLY && <WheelController />}
+      {(selectedMode === CONTROL_MODE.SENSOR_1_FAN ||
+        selectedMode === CONTROL_MODE.SENSOR_2_FAN ||
+        selectedMode === CONTROL_MODE.INDIVIDUAL_MATCHING) && (
+        <SensorFanMatchingController type={selectedMode} />
+      )}
       <div
         className={`mcu-less-1 ${
           mcuStatus[0].status === 'on' ? 'mcu-status-green' : 'mcu-status-black'

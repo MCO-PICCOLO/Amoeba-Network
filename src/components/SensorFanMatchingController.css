@@ -1,0 +1,211 @@
+#sensor-fan-matching-controller {
+  box-sizing: border-box;
+
+  /* Auto layout */
+  /* display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px 29px;
+  gap: 10px; */
+
+  position: absolute;
+  width: 451px;
+  height: 347px;
+  left: 334px;
+  top: 28px;
+
+  background: rgba(150, 149, 180, 0.5);
+  /* background: rgb(150, 149, 180); */
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(25.4358px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 32px;
+  z-index: 1000;
+}
+
+#sensor-fan-matching-controller .type-area {
+  position: absolute;
+  left: 32px;
+  top: 24px;
+  width: 384px;
+  height: 102px;
+
+  background-image: url('../assets/images/VehicleArea/matching-sensor1.png');
+}
+
+#sensor-fan-matching-controller .type-area.sensor2 {
+  position: absolute;
+  left: 32px;
+  top: 24px;
+  width: 387px;
+  height: 102px;
+
+  background-image: url('../assets/images/VehicleArea/matching-sensor2.png');
+}
+
+#sensor-fan-matching-controller .type-area.mixed {
+  position: absolute;
+  left: 32px;
+  top: 24px;
+  width: 387px;
+  height: 104x;
+
+  background-image: url('../assets/images/VehicleArea/matching-mixed.png');
+}
+
+#sensor-fan-matching-controller .sensitivity-group {
+  box-sizing: border-box;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 30px;
+
+  position: absolute;
+  left: 29px;
+  top: 148px;
+  width: 393px;
+  height: 87px;
+
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+#sensor-fan-matching-controller .sensitivity-group .Sensitivity-text {
+  position: absolute;
+  left: 40px;
+  top: 29px;
+  width: 114px;
+  height: 29px;
+
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  color: #1d1d1d;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+#sensor-fan-matching-controller .sensitivity-group .radio-group {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 30px;
+
+  position: absolute;
+  left: 183px;
+  top: 10px;
+  width: 200px;
+  height: 67px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+#sensor-fan-matching-controller .sensitivity-group .radio-group label {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+}
+
+#sensor-fan-matching-controller
+  .sensitivity-group
+  .radio-group
+  label
+  input[type='radio'] {
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  margin: 0;
+}
+
+#sensor-fan-matching-controller .sensitivity-group .radio-group label {
+  font-family: 'Pretendard';
+  font-weight: 400;
+  font-size: 18px;
+  color: #1d1d1d;
+}
+
+#sensor-fan-matching-controller .divider {
+  /* divider */
+
+  position: absolute;
+  left: 29px;
+  top: 253px;
+  width: 393px;
+  height: 1px;
+
+  background: rgba(29, 29, 29, 0.12);
+
+  /* Inside auto layout */
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+#sensor-fan-matching-controller .deploy-button {
+  position: absolute;
+  left: 29px;
+  top: 276px;
+  width: 197px;
+  height: 49px;
+
+  background-image: url('../assets/images/VehicleArea/btn-deploy.png');
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#sensor-fan-matching-controller .safety-checkbox {
+  position: absolute;
+  left: 338px;
+  top: 288px;
+  width: 84px;
+  height: 24px;
+
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+
+  color: #1d1d1d;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+#sensor-fan-matching-controller .safety-checkbox input[type='checkbox'] {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}

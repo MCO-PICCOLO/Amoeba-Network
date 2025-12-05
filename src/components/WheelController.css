@@ -16,8 +16,128 @@
   left: 334px;
   top: 30px;
 
+  background: rgba(150, 149, 180, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+
   /* Inside auto layout */
   flex: none;
   order: 0;
   flex-grow: 0;
+}
+
+#wheel-controller .inner-area {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+  gap: 8px;
+
+  width: 230px;
+  height: 164px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+#wheel-controller .inner-area .left-top {
+  width: 110px;
+  height: 78px;
+
+  background-image: url('../assets/images/VehicleArea/btn-wheel-start.png');
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+#wheel-controller .inner-area .left-top:hover {
+  filter: brightness(1.1);
+}
+
+#wheel-controller .inner-area .left-top:active {
+  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
+  transform: scale(0.97);
+}
+
+#wheel-controller .inner-area .right-top {
+  width: 110px;
+  height: 78px;
+
+  background-image: url('../assets/images/VehicleArea/btn-wheel-clear.png');
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+#wheel-controller .inner-area .right-top:hover {
+  filter: brightness(1.1);
+}
+
+#wheel-controller .inner-area .right-top:active {
+  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
+  transform: scale(0.97);
+}
+
+#wheel-controller .inner-area .left-bottom {
+  width: 110px;
+  height: 78px;
+
+  background-image: url('../assets/images/VehicleArea/btn-wheel-auto.png');
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+#wheel-controller .inner-area .left-bottom:hover {
+  filter: brightness(1.1);
+}
+
+#wheel-controller .inner-area .left-bottom:active {
+  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
+  transform: scale(0.97);
+}
+
+#wheel-controller .inner-area .right-bottom {
+  width: 110px;
+  height: 78px;
+
+  background-image: url('../assets/images/VehicleArea/btn-wheel-cali.png');
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+#wheel-controller .inner-area .right-bottom:hover {
+  filter: brightness(1.1);
+}
+
+#wheel-controller .inner-area .right-bottom:active {
+  filter: brightness(0.85) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
+  transform: scale(0.97);
 }

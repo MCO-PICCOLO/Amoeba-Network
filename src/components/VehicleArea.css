@@ -456,6 +456,7 @@
   padding: 0px;
   isolation: isolate;
   margin-top: 2px;
+  gap: 0;
 
   width: 294px;
   height: 346px;
@@ -472,9 +473,11 @@
 
 .dropdown-item {
   padding: 10px 16px;
-  font-family: 'Pretendard', Arial, sans-serif;
-  font-size: 14px;
+  font-family: 'Pretendard';
+  font-style: normal;
   font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
   color: #1d1d1d;
   cursor: pointer;
   display: flex;
@@ -483,6 +486,7 @@
   width: 100%;
   background: none;
   border: none;
+  flex: 1;
 }
 
 .dropdown-item:hover {
@@ -494,12 +498,19 @@
 }
 
 .dropdown-item.selected {
-  background-color: #f5f5f5;
+  background-color: #252deb;
+  border-radius: 24px;
+  color: #ffffff;
 }
 
 .check-icon {
-  color: #01a4ff;
-  font-weight: 700;
-  font-size: 16px;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 30px;
   margin-left: 8px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

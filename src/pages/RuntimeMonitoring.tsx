@@ -1,5 +1,5 @@
 import ChartsArea from '../components/ChartsArea';
-import MappingPopup from '../components/MappingPopup';
+// import MappingPopup from '../components/MappingPopup';
 import VehicleArea from '../components/VehicleArea';
 import { getNetworkInfo } from '../utils/RestApi';
 // import { getNetworkInfo } from '../utils/RestApi';
@@ -80,8 +80,8 @@ const RuntimeMonitoring = ({}: RuntimeMonitoringProps) => {
     const fetchLoop = async () => {
       if (!isMounted) return;
       try {
-        // const response = await getNetworkInfo();
-        const response = await getSampleNetworkInfo();
+        const response = await getNetworkInfo();
+        // const response = await getSampleNetworkInfo();
         const offset1 = response?.NetworkInfo.MCU1?.TimesyncOffset ?? 0;
         const offset2 = response?.NetworkInfo.MCU2?.TimesyncOffset ?? 0;
 
