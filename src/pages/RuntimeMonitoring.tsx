@@ -11,12 +11,12 @@ const getSampleNetworkInfo = async () => {
     NetworkInfo: {
       'SW-less1': {
         status: randStatus(),
-        distance: Math.random() * 100,
+        distance: Math.random() * 1000,
         rtt: Math.random() * 10,
       },
       'SW-less2': {
         status: randStatus(),
-        distance: Math.random() * 100,
+        distance: Math.random() * 1000,
         rtt: Math.random() * 10,
       },
       'SW-less3': { status: randStatus() },
@@ -24,12 +24,12 @@ const getSampleNetworkInfo = async () => {
       MCU1: {
         status: randStatus(),
         rtt: Math.random() * 10,
-        TimesyncOffset: Math.random() * 10,
+        TimesyncOffset: Math.random() * 400,
       },
       MCU2: {
         status: randStatus(),
         rtt: Math.random() * 10,
-        TimesyncOffset: Math.random() * 10,
+        TimesyncOffset: Math.random() * 400,
       },
     },
   };
@@ -59,7 +59,7 @@ const RuntimeMonitoring = ({}: RuntimeMonitoringProps) => {
     title: 'Sync Offset 2',
     value: Array(30).fill(0),
   });
-  const [syncOffsetMaxValue, setSyncOffsetMaxValue] = useState(250);
+  const [syncOffsetMaxValue, setSyncOffsetMaxValue] = useState(0);
   const [mcuStatus, setMcuStatus] = useState<MCUStatus[]>([
     { status: 'off', rtt: 0 }, // SW-less1
     { status: 'off', rtt: 0 }, // SW-less2
@@ -140,7 +140,7 @@ const RuntimeMonitoring = ({}: RuntimeMonitoringProps) => {
         setSyncOffsetMaxValue((prevMax) =>
           currentMax > prevMax ? currentMax : prevMax,
         );
-
+        console.log(currentMax);
         setMcuStatus(newMcuStatus);
       } catch (e) {
         // 에러 처리

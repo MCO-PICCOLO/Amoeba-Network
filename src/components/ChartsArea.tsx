@@ -35,7 +35,7 @@ const ChartsArea = ({
   distanceChartData,
   rttChartData,
   syncOffsetChartData,
-  syncOffsetMaxValue = 250,
+  syncOffsetMaxValue = 0,
 }: ChartsAreaProps) => {
   return (
     <div id="charts-area">
@@ -43,19 +43,20 @@ const ChartsArea = ({
         title="Distance"
         yDomain={[0, 1000]}
         datasets={[
-          { key: 'Sensor1', color: '#FF0AFB', data: distanceChartData.sensor1 },
-          { key: 'Sensor2', color: '#00D4FF', data: distanceChartData.sensor2 },
+          { key: 'Sensor1', color: '#FFC60A', data: distanceChartData.sensor1 },
+          { key: 'Sensor2', color: '#EB3437', data: distanceChartData.sensor2 },
         ]}
         style={{ position: 'relative', width: '100%', height: 294 }}
       />
       <MyLineChart
         title="RTT (Round Trip Time)"
-        yDomain={[0, 100]}
+        yDomain={[0, 10]}
+        yTicks={[0, 5, 10]}
         datasets={[
-          { key: 'MCU1', color: '#01A4FF', data: rttChartData.mcu1 },
-          { key: 'MCU2', color: '#FF5722', data: rttChartData.mcu2 },
-          { key: 'SW-less1', color: '#4CAF50', data: rttChartData.swLess1 },
-          { key: 'SW-less2', color: '#FFC107', data: rttChartData.swLess2 },
+          { key: 'MCU1', color: '#16B56B', data: rttChartData.mcu1 },
+          { key: 'MCU2', color: '#800AFF', data: rttChartData.mcu2 },
+          { key: 'SW-less1', color: '#FF01D9', data: rttChartData.swLess1 },
+          { key: 'SW-less2', color: '#01A4FF', data: rttChartData.swLess2 },
         ]}
         unit="ms"
         style={{ position: 'relative', width: '100%', height: 294 }}
@@ -64,8 +65,8 @@ const ChartsArea = ({
         title="Time Sync Offset"
         yDomain={[0, 500]}
         datasets={[
-          { key: 'MCU 1', color: '#01A4FF', data: syncOffsetChartData.mcu1 },
-          { key: 'MCU 2', color: '#FF5722', data: syncOffsetChartData.mcu2 },
+          { key: 'MCU 1', color: '#FF01D9', data: syncOffsetChartData.mcu1 },
+          { key: 'MCU 2', color: '#01A4FF', data: syncOffsetChartData.mcu2 },
         ]}
         unit="μs"
         maxLineY={syncOffsetMaxValue}

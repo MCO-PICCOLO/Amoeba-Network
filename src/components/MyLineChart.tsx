@@ -22,6 +22,7 @@ interface MyLineChartsProps extends HTMLAttributes<HTMLDivElement> {
   datasets: LineDataSet[];
   unit?: string;
   maxLineY?: number;
+  yTicks?: number[];
 }
 
 const MyLineCharts = ({
@@ -30,6 +31,7 @@ const MyLineCharts = ({
   datasets,
   unit = '',
   maxLineY,
+  yTicks,
   ...props
 }: MyLineChartsProps) => {
   const fixedMaxTime = 30;
@@ -70,11 +72,18 @@ const MyLineCharts = ({
               <span className="legend-label">{dataset.key}</span>
             </div>
           ))}
+          {maxLineY !== undefined && (
+            <div className="legend-item">
+              <div className="legend-icon baseline-icon" />
+              <span className="legend-label">BaseLine</span>
+            </div>
+          )}
         </div>
       </div>
-      <div style={{ position: 'absolute', top: '66px', left: '40px' }}>
+      <div style={{ position: 'absolute', top: '66px', left: '20px' }}>
         <ResponsiveContainer width={668} height={223}>
           <LineChart
+            key={`chart-${maxLineY}`}
             data={data}
             margin={{ top: 5, right: 0, left: 0, bottom: 5 }}
           >
@@ -97,11 +106,18 @@ const MyLineCharts = ({
               }}
             />
             <YAxis
-              width={50}
+              width={70}
               domain={yDomain}
+              ticks={yTicks}
               allowDataOverflow={false}
               axisLine={false}
-              tickFormatter={(value) => `${value}${unit}`}
+              tickFormatter={(value) =>
+                `${
+                  unit === 'ms' && typeof value === 'number'
+                    ? value.toFixed(2)
+                    : value
+                }${unit}`
+              }
               tick={{
                 fontFamily: 'Pretendard, Arial, sans-serif',
                 fontStyle: 'normal',
@@ -128,8 +144,9 @@ const MyLineCharts = ({
             ))}
             {maxLineY !== undefined && (
               <ReferenceLine
+                key={`refline-${maxLineY}`}
                 y={maxLineY}
-                stroke="#FF0000"
+                stroke="#FF1414"
                 strokeDasharray="5 5"
                 strokeWidth={2}
               />

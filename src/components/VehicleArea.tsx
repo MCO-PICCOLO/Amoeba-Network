@@ -1,6 +1,19 @@
 import './VehicleArea.css';
 import { useState } from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import FanController from './FanController';
+import WheelController from './WheelController';
+
+const CONTROL_MODE = {
+  FAN_ONLY: 'Fan Only',
+  WHEEL_ONLY: 'Wheel Only',
+  SENSOR_1_FAN: 'Sensor 1: Fan1,2',
+  SENSOR_2_FAN: 'Sensor 2: Fan1,2',
+  INDIVIDUAL_MATCHING: 'Individual Matching',
+  SELECT_ITEM: 'Select Item',
+} as const;
+
+type ControlMode = (typeof CONTROL_MODE)[keyof typeof CONTROL_MODE];
 
 interface MCUStatus {
   status: 'on' | 'off';
@@ -12,7 +25,9 @@ interface VehicleAreaProps {
 }
 
 const VehicleArea = ({ mcuStatus }: VehicleAreaProps) => {
-  const [selectedMode, setSelectedMode] = useState<string>('Select Item');
+  const [selectedMode, setSelectedMode] = useState<ControlMode>(
+    CONTROL_MODE.SELECT_ITEM,
+  );
 
   // Handler functions (currently unused - can be used for button click events)
   // const handleFanStart = async () => {
@@ -66,62 +81,66 @@ const VehicleArea = ({ mcuStatus }: VehicleAreaProps) => {
           <DropdownMenu.Content className="dropdown-content">
             <DropdownMenu.Item
               className={`dropdown-item ${
-                selectedMode === 'Fan Only' ? 'selected' : ''
+                selectedMode === CONTROL_MODE.FAN_ONLY ? 'selected' : ''
               }`}
-              onSelect={() => setSelectedMode('Fan Only')}
+              onSelect={() => setSelectedMode(CONTROL_MODE.FAN_ONLY)}
             >
               <span>Fan Only</span>
-              {selectedMode === 'Fan Only' && (
+              {selectedMode === CONTROL_MODE.FAN_ONLY && (
                 <span className="check-icon">✓</span>
               )}
             </DropdownMenu.Item>
             <DropdownMenu.Item
               className={`dropdown-item ${
-                selectedMode === 'Wheel Only' ? 'selected' : ''
+                selectedMode === CONTROL_MODE.WHEEL_ONLY ? 'selected' : ''
               }`}
-              onSelect={() => setSelectedMode('Wheel Only')}
+              onSelect={() => setSelectedMode(CONTROL_MODE.WHEEL_ONLY)}
             >
               <span>Wheel Only</span>
-              {selectedMode === 'Wheel Only' && (
+              {selectedMode === CONTROL_MODE.WHEEL_ONLY && (
                 <span className="check-icon">✓</span>
               )}
             </DropdownMenu.Item>
             <DropdownMenu.Item
               className={`dropdown-item ${
-                selectedMode === 'Sensor 1: Fan1,2' ? 'selected' : ''
+                selectedMode === CONTROL_MODE.SENSOR_1_FAN ? 'selected' : ''
               }`}
-              onSelect={() => setSelectedMode('Sensor 1: Fan1,2')}
+              onSelect={() => setSelectedMode(CONTROL_MODE.SENSOR_1_FAN)}
             >
               <span>Sensor 1: Fan1,2</span>
-              {selectedMode === 'Sensor 1: Fan1,2' && (
+              {selectedMode === CONTROL_MODE.SENSOR_1_FAN && (
                 <span className="check-icon">✓</span>
               )}
             </DropdownMenu.Item>
             <DropdownMenu.Item
               className={`dropdown-item ${
-                selectedMode === 'Sensor 2: Fan1,2' ? 'selected' : ''
+                selectedMode === CONTROL_MODE.SENSOR_2_FAN ? 'selected' : ''
               }`}
-              onSelect={() => setSelectedMode('Sensor 2: Fan1,2')}
+              onSelect={() => setSelectedMode(CONTROL_MODE.SENSOR_2_FAN)}
             >
               <span>Sensor 2: Fan1,2</span>
-              {selectedMode === 'Sensor 2: Fan1,2' && (
+              {selectedMode === CONTROL_MODE.SENSOR_2_FAN && (
                 <span className="check-icon">✓</span>
               )}
             </DropdownMenu.Item>
             <DropdownMenu.Item
               className={`dropdown-item ${
-                selectedMode === 'Individual Matching' ? 'selected' : ''
+                selectedMode === CONTROL_MODE.INDIVIDUAL_MATCHING
+                  ? 'selected'
+                  : ''
               }`}
-              onSelect={() => setSelectedMode('Individual Matching')}
+              onSelect={() => setSelectedMode(CONTROL_MODE.INDIVIDUAL_MATCHING)}
             >
               <span>Individidual Matching</span>
-              {selectedMode === 'Individual Matching' && (
+              {selectedMode === CONTROL_MODE.INDIVIDUAL_MATCHING && (
                 <span className="check-icon">✓</span>
               )}
             </DropdownMenu.Item>
           </DropdownMenu.Content>
         </DropdownMenu.Portal>
       </DropdownMenu.Root>
+      {selectedMode === CONTROL_MODE.FAN_ONLY && <FanController />}
+      {selectedMode === CONTROL_MODE.WHEEL_ONLY && <WheelController />}
       <div
         className={`mcu-less-1 ${
           mcuStatus[0].status === 'on' ? 'mcu-status-green' : 'mcu-status-black'
