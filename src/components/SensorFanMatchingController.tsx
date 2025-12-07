@@ -1,5 +1,11 @@
 import './SensorFanMatchingController.css';
-import { type HTMLAttributes, useState } from 'react';
+import {
+  type HTMLAttributes,
+  useState,
+  useCallback,
+  useMemo,
+  memo,
+} from 'react';
 import { CONTROL_MODE } from './VehicleArea';
 import { postDeploy } from '../utils/RestApi';
 
@@ -20,7 +26,8 @@ const SensorFanMatchingController = ({
   const [safetyEnabled, setSafetyEnabled] = useState(false);
   const [sensitivity, setSensitivity] = useState('low');
 
-  const handleDeploy = async () => {
+  // useCallback으로 핸들러 메모이제이션
+  const handleDeploy = useCallback(async () => {
     try {
       let sensors: string[] = [];
 
@@ -46,8 +53,10 @@ const SensorFanMatchingController = ({
     } catch (error) {
       console.error('Deploy failed:', error);
     }
-  };
-  const getTypeClassName = () => {
+  }, [type, sensitivity, safetyEnabled]);
+
+  // useMemo로 className 메모이제이션
+  const typeClassName = useMemo(() => {
     if (type === CONTROL_MODE.SENSOR_1_FAN) {
       return 'sensor1';
     } else if (type === CONTROL_MODE.SENSOR_2_FAN) {
@@ -56,11 +65,11 @@ const SensorFanMatchingController = ({
       return 'mixed';
     }
     return '';
-  };
+  }, [type]);
 
   return (
     <div id="sensor-fan-matching-controller" {...props}>
-      <div className={`type-area ${getTypeClassName()}`} />
+      <div className={`type-area ${typeClassName}`} />
       <div className="sensitivity-group">
         <div className="Sensitivity-text">Sensitivity</div>
         <div className="radio-group">
@@ -112,4 +121,4 @@ const SensorFanMatchingController = ({
   );
 };
 
-export default SensorFanMatchingController;
+export default memo(SensorFanMatchingController);

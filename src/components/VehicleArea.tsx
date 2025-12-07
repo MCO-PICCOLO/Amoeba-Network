@@ -1,5 +1,5 @@
 import './VehicleArea.css';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import FanController from './FanController';
 import WheelController from './WheelController';
@@ -139,4 +139,4 @@ const VehicleArea = ({ mcuStatus }: VehicleAreaProps) => {
   );
 };
 
-export default VehicleArea;
+export default memo(VehicleArea);

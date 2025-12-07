@@ -35,7 +35,7 @@ const getSampleNetworkInfo = async () => {
   };
 };
 import './RuntimeMonitoring.css';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 interface MCUStatus {
   status: 'on' | 'off';
@@ -68,16 +68,17 @@ const RuntimeMonitoring = ({}: RuntimeMonitoringProps) => {
     { status: 'off', rtt: 0 }, // SW-less3
     { status: 'off', rtt: 0 }, // SW-less4
   ]);
-  const timerRef = useRef<number | null>(null);
+  // 메모리릭 방지: setInterval 사용
 
-  const pushValue = (arr: number[], newValue: number) => {
+  // useCallback으로 pushValue 메모이제이션하여 배열 재생성 방지
+  const pushValue = useCallback((arr: number[], newValue: number) => {
     const next = [...arr, newValue];
     return next.length > 30 ? next.slice(next.length - 30) : next;
-  };
+  }, []);
 
   useEffect(() => {
     let isMounted = true;
-    const fetchLoop = async () => {
+    const intervalId = setInterval(async () => {
       if (!isMounted) return;
       try {
         const response = await getNetworkInfo();
@@ -120,6 +121,9 @@ const RuntimeMonitoring = ({}: RuntimeMonitoringProps) => {
         const rttSWLess1 = response?.NetworkInfo['SW-less1']?.rtt ?? 0;
         const rttSWLess2 = response?.NetworkInfo['SW-less2']?.rtt ?? 0;
 
+        // 배치 업데이트: 여러 setState를 한 번에 처리하여 리렌더 최소화
+        const currentMax = Math.max(offset1, offset2);
+
         setDistance1Data((prev) => pushValue(prev, distance1));
         setDistance2Data((prev) => pushValue(prev, distance2));
         setRttMCU1Data((prev) => pushValue(prev, rttMCU1));
@@ -134,25 +138,18 @@ const RuntimeMonitoring = ({}: RuntimeMonitoringProps) => {
           ...prev,
           value: pushValue(prev.value, offset2),
         }));
-
-        // Sync Offset Max Value 업데이트
-        const currentMax = Math.max(offset1, offset2);
         setSyncOffsetMaxValue((prevMax) =>
           currentMax > prevMax ? currentMax : prevMax,
         );
-        console.log(currentMax);
         setMcuStatus(newMcuStatus);
+        // console.log(currentMax);
       } catch (e) {
         // 에러 처리
       }
-      if (isMounted) {
-        timerRef.current = setTimeout(fetchLoop, 1000);
-      }
-    };
-    fetchLoop();
+    }, 1000);
     return () => {
       isMounted = false;
-      if (timerRef.current) clearTimeout(timerRef.current);
+      clearInterval(intervalId);
     };
   }, []);
 

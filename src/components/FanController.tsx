@@ -1,5 +1,5 @@
 import './FanController.css';
-import { type HTMLAttributes } from 'react';
+import { type HTMLAttributes, useCallback, memo } from 'react';
 import {
   postFanStart,
   postFanAccel,
@@ -10,37 +10,38 @@ import {
 interface FanControllerProps extends HTMLAttributes<HTMLDivElement> {}
 
 const FanController = ({ ...props }: FanControllerProps) => {
-  const handleLeftTop = async () => {
+  // useCallback으로 이벤트 핸들러 메모이제이션하여 불필요한 리렌더 방지
+  const handleLeftTop = useCallback(async () => {
     try {
       await postFanStart();
     } catch (e) {
       console.error('Failed to start fan:', e);
     }
-  };
+  }, []);
 
-  const handleRightTop = async () => {
+  const handleRightTop = useCallback(async () => {
     try {
       await postFanStop();
     } catch (e) {
       console.error('Failed to clear fan:', e);
     }
-  };
+  }, []);
 
-  const handleLeftBottom = async () => {
+  const handleLeftBottom = useCallback(async () => {
     try {
       await postFanDeaccel();
     } catch (e) {
       console.error('Failed to deaccel fan:', e);
     }
-  };
+  }, []);
 
-  const handleRightBottom = async () => {
+  const handleRightBottom = useCallback(async () => {
     try {
       await postFanAccel();
     } catch (e) {
       console.error('Failed to accel fan:', e);
     }
-  };
+  }, []);
 
   return (
     <div id="fan-controller" {...props}>
@@ -54,4 +55,4 @@ const FanController = ({ ...props }: FanControllerProps) => {
   );
 };
 
-export default FanController;
+export default memo(FanController);

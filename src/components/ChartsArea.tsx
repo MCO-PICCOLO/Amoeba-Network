@@ -1,5 +1,6 @@
 import './ChartsArea.css';
 import MyLineChart from './MyLineChart';
+import { memo } from 'react';
 
 // interface ChartDataset {
 //   key: string;
@@ -76,4 +77,4 @@ const ChartsArea = ({
   );
 };
 
-export default ChartsArea;
+export default memo(ChartsArea);

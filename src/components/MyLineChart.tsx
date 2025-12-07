@@ -9,6 +9,7 @@ import {
 } from 'recharts';
 import './MyLineChart.css';
 import type { HTMLAttributes } from 'react';
+import { useMemo, memo } from 'react';
 
 interface LineDataSet {
   key: string;
@@ -36,26 +37,30 @@ const MyLineCharts = ({
 }: MyLineChartsProps) => {
   const fixedMaxTime = 30;
 
-  const data: Array<{ time: number; [key: string]: number | null }> =
-    Array.from({ length: fixedMaxTime }, (_v, i) => {
-      const point: { time: number; [key: string]: number | null } = {
-        time: i + 1,
-      };
+  // useMemo로 data 배열 메모이제이션하여 불필요한 객체 생성 방지
+  const data: Array<{ time: number; [key: string]: number | null }> = useMemo(
+    () =>
+      Array.from({ length: fixedMaxTime }, (_v, i) => {
+        const point: { time: number; [key: string]: number | null } = {
+          time: i + 1,
+        };
 
-      datasets.forEach((dataset) => {
-        const n = dataset.data.length;
-        if (n === 0) {
-          point[dataset.key] = null;
-        } else if (n < fixedMaxTime) {
-          point[dataset.key] = i < n ? dataset.data[i] : null;
-        } else {
-          const slice = dataset.data.slice(-fixedMaxTime);
-          point[dataset.key] = slice[i] ?? null;
-        }
-      });
+        datasets.forEach((dataset) => {
+          const n = dataset.data.length;
+          if (n === 0) {
+            point[dataset.key] = null;
+          } else if (n < fixedMaxTime) {
+            point[dataset.key] = i < n ? dataset.data[i] : null;
+          } else {
+            const slice = dataset.data.slice(-fixedMaxTime);
+            point[dataset.key] = slice[i] ?? null;
+          }
+        });
 
-      return point;
-    });
+        return point;
+      }),
+    [datasets],
+  );
   const domainMax = fixedMaxTime;
   const xTicks = [5, 10, 15, 20, 25, 30];
   return (
@@ -158,4 +163,4 @@ const MyLineCharts = ({
   );
 };
 
-export default MyLineCharts;
+export default memo(MyLineCharts);

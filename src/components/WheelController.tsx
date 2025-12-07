@@ -5,43 +5,44 @@ import {
   postWheelStop,
 } from '../utils/RestApi';
 import './WheelController.css';
-import { type HTMLAttributes } from 'react';
+import { type HTMLAttributes, useCallback, memo } from 'react';
 
 interface WheelControllerProps extends HTMLAttributes<HTMLDivElement> {}
 
-const handleLeftTop = async () => {
-  try {
-    await postWheelStart();
-  } catch (e) {
-    console.error('Failed to start wheel:', e);
-  }
-};
-
-const handleRightTop = async () => {
-  try {
-    await postWheelStop();
-  } catch (e) {
-    console.error('Failed to stop wheel:', e);
-  }
-};
-
-const handleLeftBottom = async () => {
-  try {
-    await postWheelAuto();
-  } catch (e) {
-    console.error('Failed to auto wheel:', e);
-  }
-};
-
-const handleRightBottom = async () => {
-  try {
-    await postWheelCalibration();
-  } catch (e) {
-    console.error('Failed to calibrate wheel:', e);
-  }
-};
-
 const WheelController = ({ ...props }: WheelControllerProps) => {
+  // useCallback으로 이벤트 핸들러 메모이제이션하여 불필요한 리렌더 방지
+  const handleLeftTop = useCallback(async () => {
+    try {
+      await postWheelStart();
+    } catch (e) {
+      console.error('Failed to start wheel:', e);
+    }
+  }, []);
+
+  const handleRightTop = useCallback(async () => {
+    try {
+      await postWheelStop();
+    } catch (e) {
+      console.error('Failed to stop wheel:', e);
+    }
+  }, []);
+
+  const handleLeftBottom = useCallback(async () => {
+    try {
+      await postWheelAuto();
+    } catch (e) {
+      console.error('Failed to auto wheel:', e);
+    }
+  }, []);
+
+  const handleRightBottom = useCallback(async () => {
+    try {
+      await postWheelCalibration();
+    } catch (e) {
+      console.error('Failed to calibrate wheel:', e);
+    }
+  }, []);
+
   return (
     <div id="wheel-controller" {...props}>
       <div className="inner-area">
@@ -54,4 +55,4 @@ const WheelController = ({ ...props }: WheelControllerProps) => {
   );
 };
 
-export default WheelController;
+export default memo(WheelController);
