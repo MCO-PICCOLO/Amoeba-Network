@@ -79,7 +79,7 @@ const VehicleArea = ({ mcuStatus, onSensitivityChange }: VehicleAreaProps) => {
               }`}
               onSelect={() => setSelectedMode(CONTROL_MODE.INDIVIDUAL_MATCHING)}
             >
-              <span>Individidual Matching</span>
+              <span>Individual Matching</span>
               {selectedMode === CONTROL_MODE.INDIVIDUAL_MATCHING && (
                 <span className="check-icon">✓</span>
               )}
@@ -96,6 +96,38 @@ const VehicleArea = ({ mcuStatus, onSensitivityChange }: VehicleAreaProps) => {
           onSensitivityChange={onSensitivityChange}
         />
       )}
+
+      {selectedMode === CONTROL_MODE.FAN_ONLY && (
+        <>
+          <div className="s1-normal"></div>
+          <div className="s2-normal"></div>
+          <div className="w1-dimmed"></div>
+          <div className="w2-dimmed"></div>
+          <div className="f1-normal"></div>
+          <div className="f2-normal"></div>
+        </>
+      )}
+      {selectedMode === CONTROL_MODE.WHEEL_ONLY && (
+        <>
+          <div className="s1-dimmed"></div>
+          <div className="s2-dimmed"></div>
+          <div className="w1-normal"></div>
+          <div className="w2-normal"></div>
+          <div className="f1-dimmed"></div>
+          <div className="f2-dimmed"></div>
+        </>
+      )}
+      {selectedMode !== CONTROL_MODE.FAN_ONLY &&
+        selectedMode !== CONTROL_MODE.WHEEL_ONLY && (
+          <>
+            <div className="s1-normal"></div>
+            <div className="s2-normal"></div>
+            <div className="w1-normal"></div>
+            <div className="w2-normal"></div>
+            <div className="f1-normal"></div>
+            <div className="f2-normal"></div>
+          </>
+        )}
       <div
         className={`mcu-less-1 ${
           mcuStatus[0].status === 'on' ? 'mcu-status-green' : 'mcu-status-black'

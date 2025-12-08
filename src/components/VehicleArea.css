@@ -475,7 +475,7 @@
 }
 
 .dropdown-item {
-  padding: 10px 16px;
+  padding: 20px 16px;
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 400;
@@ -516,4 +516,112 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#vehicle-area .s1-normal {
+  position: absolute;
+  height: 119px;
+  width: 205px;
+  left: 110px;
+  top: 298px;
+  background-image: url('../assets/images/VehicleArea/s1-normal.png');
+}
+
+#vehicle-area .s2-normal {
+  position: absolute;
+  height: 119px;
+  width: 204px;
+  left: 676px;
+  top: 298px;
+  background-image: url('../assets/images/VehicleArea/s2-normal.png');
+}
+
+#vehicle-area .w1-normal {
+  position: absolute;
+  height: 143px;
+  width: 205px;
+  left: 110px;
+  top: 482px;
+  background-image: url('../assets/images/VehicleArea/w1-normal.png');
+}
+
+#vehicle-area .w2-normal {
+  position: absolute;
+  height: 143px;
+  width: 204px;
+  left: 676px;
+  top: 482px;
+  background-image: url('../assets/images/VehicleArea/w2-normal.png');
+}
+
+#vehicle-area .f1-normal {
+  position: absolute;
+  height: 119px;
+  width: 204px;
+  left: 110px;
+  top: 666px;
+  background-image: url('../assets/images/VehicleArea/f1-normal.png');
+}
+
+#vehicle-area .f2-normal {
+  position: absolute;
+  height: 119px;
+  width: 204px;
+  left: 676px;
+  top: 666px;
+  background-image: url('../assets/images/VehicleArea/f2-normal.png');
+}
+
+#vehicle-area .s1-dimmed {
+  position: absolute;
+  height: 119px;
+  width: 205px;
+  left: 110px;
+  top: 298px;
+  background-image: url('../assets/images/VehicleArea/s1-dimmed.png');
+}
+
+#vehicle-area .s2-dimmed {
+  position: absolute;
+  height: 119px;
+  width: 204px;
+  left: 676px;
+  top: 298px;
+  background-image: url('../assets/images/VehicleArea/s2-dimmed.png');
+}
+
+#vehicle-area .w1-dimmed {
+  position: absolute;
+  height: 143px;
+  width: 205px;
+  left: 110px;
+  top: 482px;
+  background-image: url('../assets/images/VehicleArea/w1-dimmed.png');
+}
+
+#vehicle-area .w2-dimmed {
+  position: absolute;
+  height: 143px;
+  width: 204px;
+  left: 676px;
+  top: 482px;
+  background-image: url('../assets/images/VehicleArea/w2-dimmed.png');
+}
+
+#vehicle-area .f1-dimmed {
+  position: absolute;
+  height: 119px;
+  width: 204px;
+  left: 110px;
+  top: 666px;
+  background-image: url('../assets/images/VehicleArea/f1-dimmed.png');
+}
+
+#vehicle-area .f2-dimmed {
+  position: absolute;
+  height: 119px;
+  width: 204px;
+  left: 676px;
+  top: 666px;
+  background-image: url('../assets/images/VehicleArea/f2-dimmed.png');
 }
