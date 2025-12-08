@@ -4,36 +4,36 @@ import VehicleArea from '../components/VehicleArea';
 import { getNetworkInfo } from '../utils/RestApi';
 // import { getNetworkInfo } from '../utils/RestApi';
 // 샘플 데이터 반환 함수
-const getSampleNetworkInfo = async () => {
-  // Helper to randomly pick 'on' or 'off'
-  const randStatus = () => (Math.random() > 0.5 ? 'on' : 'off') as 'on' | 'off';
-  return {
-    NetworkInfo: {
-      'SW-less1': {
-        status: randStatus(),
-        distance: Math.random() * 1000,
-        rtt: Math.random() * 10,
-      },
-      'SW-less2': {
-        status: randStatus(),
-        distance: Math.random() * 1000,
-        rtt: Math.random() * 10,
-      },
-      'SW-less3': { status: randStatus() },
-      'SW-less4': { status: randStatus() },
-      MCU1: {
-        status: randStatus(),
-        rtt: Math.random() * 10,
-        TimesyncOffset: Math.random() * 100,
-      },
-      MCU2: {
-        status: randStatus(),
-        rtt: Math.random() * 10,
-        TimesyncOffset: Math.random() * 100,
-      },
-    },
-  };
-};
+// const getSampleNetworkInfo = async () => {
+//   // Helper to randomly pick 'on' or 'off'
+//   const randStatus = () => (Math.random() > 0.5 ? 'on' : 'off') as 'on' | 'off';
+//   return {
+//     NetworkInfo: {
+//       'SW-less1': {
+//         status: randStatus(),
+//         distance: Math.random() * 1000,
+//         rtt: Math.random() * 10,
+//       },
+//       'SW-less2': {
+//         status: randStatus(),
+//         distance: Math.random() * 1000,
+//         rtt: Math.random() * 10,
+//       },
+//       'SW-less3': { status: randStatus() },
+//       'SW-less4': { status: randStatus() },
+//       MCU1: {
+//         status: randStatus(),
+//         rtt: Math.random() * 10,
+//         TimesyncOffset: Math.random() * 100,
+//       },
+//       MCU2: {
+//         status: randStatus(),
+//         rtt: Math.random() * 10,
+//         TimesyncOffset: Math.random() * 100,
+//       },
+//     },
+//   };
+// };
 import './RuntimeMonitoring.css';
 import { useEffect, useState, useCallback, memo } from 'react';
 

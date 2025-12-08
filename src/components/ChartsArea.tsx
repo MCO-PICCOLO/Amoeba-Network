@@ -37,7 +37,7 @@ const ChartsArea = ({
   distanceChartData,
   rttChartData,
   syncOffsetChartData,
-  syncOffsetMaxValue = 0,
+  // syncOffsetMaxValue = 0,
   sensitivity,
 }: ChartsAreaProps) => {
   // Sensitivity에 따른 Distance Reference Line 값 계산
