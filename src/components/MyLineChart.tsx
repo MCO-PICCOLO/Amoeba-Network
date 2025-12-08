@@ -150,7 +150,7 @@ const MyLineCharts = ({
             {datasets.map((dataset) => (
               <Line
                 key={dataset.key}
-                type="natural"
+                type="linear"
                 dataKey={dataset.key}
                 stroke={dataset.color}
                 strokeWidth={3}
