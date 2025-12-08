@@ -48,7 +48,7 @@
   left: 32px;
   top: 24px;
   width: 387px;
-  height: 104x;
+  height: 104px;
 
   background-image: url('../assets/images/VehicleArea/matching-mixed.png');
 }
@@ -208,4 +208,77 @@
   width: 24px;
   height: 24px;
   margin-right: 8px;
+}
+
+#sensor-fan-after-deploy {
+  position: absolute;
+  width: 451px;
+  height: 223px;
+  left: 334px;
+  top: 28px;
+
+  background-image: url('../assets/images/VehicleArea/sensor-fan-after-deploy.png');
+  z-index: 1000;
+}
+
+#sensor-fan-after-deploy .type-area {
+  position: absolute;
+  left: 32px;
+  top: 24px;
+  width: 384px;
+  height: 102px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+  background-image: url('../assets/images/VehicleArea/matching-sensor1.png');
+}
+
+#sensor-fan-after-deploy .type-area.sensor2 {
+  position: absolute;
+  left: 32px;
+  top: 24px;
+  width: 387px;
+  height: 102px;
+
+  background-image: url('../assets/images/VehicleArea/matching-sensor2.png');
+}
+
+#sensor-fan-after-deploy .type-area.mixed {
+  box-sizing: border-box;
+  position: absolute;
+  left: 32px;
+  top: 24px;
+  width: 387px;
+  height: 104px;
+
+  background-image: url('../assets/images/VehicleArea/matching-mixed.png');
+}
+
+#sensor-fan-after-deploy .sensitivity-text {
+  box-sizing: border-box;
+  position: absolute;
+  left: 29px;
+  top: 167px;
+  width: 393px;
+  height: 32px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  color: #ffffff;
+
+  flex: none;
+  order: 2;
+  flex-grow: 0;
 }

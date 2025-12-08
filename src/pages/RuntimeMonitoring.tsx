@@ -24,18 +24,18 @@ const getSampleNetworkInfo = async () => {
       MCU1: {
         status: randStatus(),
         rtt: Math.random() * 10,
-        TimesyncOffset: Math.random() * 400,
+        TimesyncOffset: Math.random() * 100,
       },
       MCU2: {
         status: randStatus(),
         rtt: Math.random() * 10,
-        TimesyncOffset: Math.random() * 400,
+        TimesyncOffset: Math.random() * 100,
       },
     },
   };
 };
 import './RuntimeMonitoring.css';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, memo } from 'react';
 
 interface MCUStatus {
   status: 'on' | 'off';
@@ -60,6 +60,7 @@ const RuntimeMonitoring = ({}: RuntimeMonitoringProps) => {
     value: Array(30).fill(0),
   });
   const [syncOffsetMaxValue, setSyncOffsetMaxValue] = useState(0);
+  const [sensitivity, setSensitivity] = useState<string>('');
   const [mcuStatus, setMcuStatus] = useState<MCUStatus[]>([
     { status: 'off', rtt: 0 }, // SW-less1
     { status: 'off', rtt: 0 }, // SW-less2
@@ -77,11 +78,25 @@ const RuntimeMonitoring = ({}: RuntimeMonitoringProps) => {
   }, []);
 
   useEffect(() => {
+    console.log('[RuntimeMonitoring] useEffect mounted');
     let isMounted = true;
+    let isFirstCall = true;
+
     const intervalId = setInterval(async () => {
       if (!isMounted) return;
+
+      // 첫 번째 호출은 500ms 대기 후 실행 (중복 호출 방지)
+      if (isFirstCall) {
+        isFirstCall = false;
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        if (!isMounted) return;
+      }
+
       try {
+        console.log('[RuntimeMonitoring] Fetching network info...');
         const response = await getNetworkInfo();
+        if (!isMounted) return; // 비동기 작업 완료 후 언마운트 확인
+
         // const response = await getSampleNetworkInfo();
         const offset1 = response?.NetworkInfo.MCU1?.TimesyncOffset ?? 0;
         const offset2 = response?.NetworkInfo.MCU2?.TimesyncOffset ?? 0;
@@ -142,20 +157,29 @@ const RuntimeMonitoring = ({}: RuntimeMonitoringProps) => {
           currentMax > prevMax ? currentMax : prevMax,
         );
         setMcuStatus(newMcuStatus);
-        // console.log(currentMax);
       } catch (e) {
-        // 에러 처리
+        console.error('[RuntimeMonitoring] Error in interval:', e);
       }
     }, 1000);
+
     return () => {
+      console.log('[RuntimeMonitoring] useEffect cleanup');
       isMounted = false;
       clearInterval(intervalId);
     };
   }, []);
 
+  // Sensitivity 변경 핸들러
+  const handleSensitivityChange = useCallback((newSensitivity: string) => {
+    setSensitivity(newSensitivity);
+  }, []);
+
   return (
     <div id="runtime-monitoring">
-      <VehicleArea mcuStatus={mcuStatus} />
+      <VehicleArea
+        mcuStatus={mcuStatus}
+        onSensitivityChange={handleSensitivityChange}
+      />
       <ChartsArea
         distanceChartData={{
           sensor1: distance1Data,
@@ -172,10 +196,11 @@ const RuntimeMonitoring = ({}: RuntimeMonitoringProps) => {
           mcu2: syncOffset2Data.value,
         }}
         syncOffsetMaxValue={syncOffsetMaxValue}
+        sensitivity={sensitivity}
       />
       {/* <MappingPopup style={{ top: 130, left: 224 }} /> */}
     </div>
   );
 };
 
-export default RuntimeMonitoring;
+export default memo(RuntimeMonitoring);

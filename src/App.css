@@ -9,3 +9,24 @@
 *::after {
   box-sizing: border-box;
 }
+
+.App .reset-button {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  left: 984px;
+  top: 107px;
+  background-image: url('./assets/images/reset.png');
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.App .reset-button:hover {
+  filter: brightness(1.2);
+  transform: scale(1.05);
+}
+
+.App .reset-button:active {
+  filter: brightness(0.8);
+  transform: scale(0.95);
+}

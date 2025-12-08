@@ -9,7 +9,6 @@ export const CONTROL_MODE = {
   FAN_ONLY: 'Fan Only',
   WHEEL_ONLY: 'Wheel Only',
   SENSOR_1_FAN: 'Sensor 1: Fan1,2',
-  SENSOR_2_FAN: 'Sensor 2: Fan1,2',
   INDIVIDUAL_MATCHING: 'Individual Matching',
   SELECT_ITEM: 'Select Item',
 } as const;
@@ -23,9 +22,10 @@ interface MCUStatus {
 
 interface VehicleAreaProps {
   mcuStatus: MCUStatus[];
+  onSensitivityChange?: (sensitivity: string) => void;
 }
 
-const VehicleArea = ({ mcuStatus }: VehicleAreaProps) => {
+const VehicleArea = ({ mcuStatus, onSensitivityChange }: VehicleAreaProps) => {
   const [selectedMode, setSelectedMode] = useState<ControlMode>(
     CONTROL_MODE.SELECT_ITEM,
   );
@@ -73,17 +73,6 @@ const VehicleArea = ({ mcuStatus }: VehicleAreaProps) => {
             </DropdownMenu.Item>
             <DropdownMenu.Item
               className={`dropdown-item ${
-                selectedMode === CONTROL_MODE.SENSOR_2_FAN ? 'selected' : ''
-              }`}
-              onSelect={() => setSelectedMode(CONTROL_MODE.SENSOR_2_FAN)}
-            >
-              <span>Sensor 2: Fan1,2</span>
-              {selectedMode === CONTROL_MODE.SENSOR_2_FAN && (
-                <span className="check-icon">✓</span>
-              )}
-            </DropdownMenu.Item>
-            <DropdownMenu.Item
-              className={`dropdown-item ${
                 selectedMode === CONTROL_MODE.INDIVIDUAL_MATCHING
                   ? 'selected'
                   : ''
@@ -101,9 +90,11 @@ const VehicleArea = ({ mcuStatus }: VehicleAreaProps) => {
       {selectedMode === CONTROL_MODE.FAN_ONLY && <FanController />}
       {selectedMode === CONTROL_MODE.WHEEL_ONLY && <WheelController />}
       {(selectedMode === CONTROL_MODE.SENSOR_1_FAN ||
-        selectedMode === CONTROL_MODE.SENSOR_2_FAN ||
         selectedMode === CONTROL_MODE.INDIVIDUAL_MATCHING) && (
-        <SensorFanMatchingController type={selectedMode} />
+        <SensorFanMatchingController
+          type={selectedMode}
+          onSensitivityChange={onSensitivityChange}
+        />
       )}
       <div
         className={`mcu-less-1 ${

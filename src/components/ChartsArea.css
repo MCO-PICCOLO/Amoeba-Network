@@ -8,12 +8,12 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 30px 36px;
+  padding: 15px 36px;
   gap: 9px;
 
   position: absolute;
   width: 780px;
-  height: 1000px;
+  height: 960px;
   left: 1080px;
   top: 60px;
 

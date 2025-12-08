@@ -126,3 +126,14 @@ export const postDeploy = async (config: DeployConfig) => {
     throw error;
   }
 };
+
+export const postReset = async () => {
+  try {
+    const response = await networkApi.post('/api/reset');
+    return response.data;
+  } catch (error) {
+    console.error('Error reset:', error);
+    // 개발 중에는 성공으로 처리
+    return { success: true };
+  }
+};

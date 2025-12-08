@@ -17,12 +17,17 @@ interface LineDataSet {
   data: number[];
 }
 
+interface MaxLineInfo {
+  value: number;
+  label?: string;
+}
+
 interface MyLineChartsProps extends HTMLAttributes<HTMLDivElement> {
   title: string;
   yDomain?: [number, number];
   datasets: LineDataSet[];
   unit?: string;
-  maxLineY?: number;
+  maxLineInfo?: MaxLineInfo;
   yTicks?: number[];
 }
 
@@ -31,7 +36,7 @@ const MyLineCharts = ({
   yDomain = [0, 1000],
   datasets,
   unit = '',
-  maxLineY,
+  maxLineInfo,
   yTicks,
   ...props
 }: MyLineChartsProps) => {
@@ -47,19 +52,28 @@ const MyLineCharts = ({
 
         datasets.forEach((dataset) => {
           const n = dataset.data.length;
+          let value: number | null = null;
+
           if (n === 0) {
-            point[dataset.key] = null;
+            value = null;
           } else if (n < fixedMaxTime) {
-            point[dataset.key] = i < n ? dataset.data[i] : null;
+            value = i < n ? dataset.data[i] : null;
           } else {
             const slice = dataset.data.slice(-fixedMaxTime);
-            point[dataset.key] = slice[i] ?? null;
+            value = slice[i] ?? null;
           }
+
+          // yDomain의 최대값보다 높은 경우 yDomain 최대값으로 제한
+          if (value !== null && yDomain && value > yDomain[1]) {
+            value = yDomain[1];
+          }
+
+          point[dataset.key] = value;
         });
 
         return point;
       }),
-    [datasets],
+    [datasets, yDomain],
   );
   const domainMax = fixedMaxTime;
   const xTicks = [5, 10, 15, 20, 25, 30];
@@ -68,19 +82,21 @@ const MyLineCharts = ({
       <div className="chart-title-legend">
         <div className="chart-title">{title}</div>
         <div className="chart-legend">
-          {datasets.map((dataset, index) => (
-            <div key={`legend-${index}`} className="legend-item">
-              <div
-                className="legend-icon"
-                style={{ borderColor: dataset.color }}
-              />
-              <span className="legend-label">{dataset.key}</span>
-            </div>
-          ))}
-          {maxLineY !== undefined && (
+          {datasets
+            .filter((dataset) => dataset.key !== 'SW-less1')
+            .map((dataset, index) => (
+              <div key={`legend-${index}`} className="legend-item">
+                <div
+                  className="legend-icon"
+                  style={{ borderColor: dataset.color }}
+                />
+                <span className="legend-label">{dataset.key}</span>
+              </div>
+            ))}
+          {maxLineInfo !== undefined && maxLineInfo.label !== undefined && (
             <div className="legend-item">
               <div className="legend-icon baseline-icon" />
-              <span className="legend-label">BaseLine</span>
+              <span className="legend-label">{maxLineInfo.label}</span>
             </div>
           )}
         </div>
@@ -88,7 +104,7 @@ const MyLineCharts = ({
       <div style={{ position: 'absolute', top: '66px', left: '20px' }}>
         <ResponsiveContainer width={668} height={223}>
           <LineChart
-            key={`chart-${maxLineY}`}
+            key={`chart-${maxLineInfo?.value}`}
             data={data}
             margin={{ top: 5, right: 0, left: 0, bottom: 5 }}
           >
@@ -147,10 +163,10 @@ const MyLineCharts = ({
                 name={dataset.key}
               />
             ))}
-            {maxLineY !== undefined && (
+            {maxLineInfo !== undefined && (
               <ReferenceLine
-                key={`refline-${maxLineY}`}
-                y={maxLineY}
+                key={`refline-${maxLineInfo.value}`}
+                y={maxLineInfo.value}
                 stroke="#FF1414"
                 strokeDasharray="5 5"
                 strokeWidth={2}
