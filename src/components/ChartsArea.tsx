@@ -70,7 +70,7 @@ const ChartsArea = ({
       <MyLineChart
         title="End-to-End Response Time"
         yDomain={[0, 50]}
-        yTicks={[0, 10, 35, 50]}
+        yTicks={[0, 10, 30, 50]}
         datasets={[
           // { key: 'MCU1', color: '#16B56B', data: rttChartData.mcu1 },
           // { key: 'MCU2', color: '#800AFF', data: rttChartData.mcu2 },
