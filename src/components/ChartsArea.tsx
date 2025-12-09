@@ -84,7 +84,7 @@ const ChartsArea = ({
       <MyLineChart
         title="Time Sync Offset"
         yDomain={[0, 500]}
-        yTicks={[0, 100, 350, 500]}
+        yTicks={[0, 100, 300, 500]}
         datasets={[
           { key: 'MCU 1', color: '#FF01D9', data: syncOffsetChartData.mcu1 },
           { key: 'MCU 2', color: '#01A4FF', data: syncOffsetChartData.mcu2 },
