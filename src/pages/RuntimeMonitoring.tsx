@@ -2,7 +2,7 @@ import ChartsArea from '../components/ChartsArea';
 // import MappingPopup from '../components/MappingPopup';
 import VehicleArea from '../components/VehicleArea';
 import { getNetworkInfo } from '../utils/RestApi';
-// import { getNetworkInfo } from '../utils/RestApi';
+
 // 샘플 데이터 반환 함수
 // const getSampleNetworkInfo = async () => {
 //   // Helper to randomly pick 'on' or 'off'
@@ -12,23 +12,23 @@ import { getNetworkInfo } from '../utils/RestApi';
 //       'SW-less1': {
 //         status: randStatus(),
 //         distance: Math.random() * 1000,
-//         rtt: Math.random() * 10,
+//         rtt: Math.random() * 20,
 //       },
 //       'SW-less2': {
 //         status: randStatus(),
 //         distance: Math.random() * 1000,
-//         rtt: Math.random() * 10,
+//         rtt: Math.random() * 20,
 //       },
 //       'SW-less3': { status: randStatus() },
 //       'SW-less4': { status: randStatus() },
 //       MCU1: {
 //         status: randStatus(),
-//         rtt: Math.random() * 10,
+//         rtt: Math.random() * 20,
 //         TimesyncOffset: Math.random() * 100,
 //       },
 //       MCU2: {
 //         status: randStatus(),
-//         rtt: Math.random() * 10,
+//         rtt: Math.random() * 20,
 //         TimesyncOffset: Math.random() * 100,
 //       },
 //     },
@@ -92,8 +92,9 @@ const RuntimeMonitoring = ({}: RuntimeMonitoringProps) => {
         if (!isMounted) return;
       }
 
+      // 데이터 가져오기
       try {
-        console.log('[RuntimeMonitoring] Fetching network info...');
+        // console.log('[RuntimeMonitoring] Fetching network info...');
         const response = await getNetworkInfo();
         if (!isMounted) return; // 비동기 작업 완료 후 언마운트 확인
 

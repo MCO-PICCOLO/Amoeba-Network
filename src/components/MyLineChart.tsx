@@ -135,7 +135,7 @@ const MyLineCharts = ({
               tickFormatter={(value) =>
                 `${
                   unit === 'ms' && typeof value === 'number'
-                    ? value.toFixed(2)
+                    ? Math.round(value)
                     : value
                 }${unit}`
               }
