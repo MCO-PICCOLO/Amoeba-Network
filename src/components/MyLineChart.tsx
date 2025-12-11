@@ -95,7 +95,19 @@ const MyLineCharts = ({
             ))}
           {maxLineInfo !== undefined && maxLineInfo.label !== undefined && (
             <div className="legend-item">
-              <div className="legend-icon baseline-icon" />
+              <div
+                className="legend-icon-image"
+                style={{
+                  width: '18px',
+                  height: '18px',
+                  // backgroundColor: 'blue',
+                  backgroundImage: "url('/src/assets/images/legend-icon.png')",
+                  backgroundSize: 'contain',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                  flexShrink: 0,
+                }}
+              />
               <span className="legend-label">{maxLineInfo.label}</span>
             </div>
           )}
@@ -106,7 +118,7 @@ const MyLineCharts = ({
           <LineChart
             key={`chart-${maxLineInfo?.value}`}
             data={data}
-            margin={{ top: 5, right: 0, left: 0, bottom: 5 }}
+            margin={{ top: 5, right: 15, left: 0, bottom: 5 }}
           >
             <CartesianGrid
               strokeDasharray="3 3"
@@ -131,7 +143,7 @@ const MyLineCharts = ({
               domain={yDomain}
               ticks={yTicks}
               allowDataOverflow={false}
-              axisLine={false}
+              axisLine={true}
               tickFormatter={(value) =>
                 `${
                   unit === 'ms' && typeof value === 'number'

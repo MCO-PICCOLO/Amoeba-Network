@@ -70,8 +70,19 @@
   border: 6px solid currentColor;
   background: transparent;
   flex-shrink: 0;
+
   box-sizing: border-box;
 }
+
+/* .line-chart .legend-icon.legend-icon-image {
+  width: 18px;
+  height: 18px;
+
+  background-image: url('../assets/images/legend-icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+} */
 
 .line-chart .legend-label {
   font-family: 'Pretendard';
