@@ -86,8 +86,13 @@ const ChartsArea = ({
         yDomain={[0, 500]}
         yTicks={[0, 100, 300, 500]}
         datasets={[
-          { key: 'MCU 1', color: '#FF01D9', data: syncOffsetChartData.mcu1 },
-          { key: 'MCU 2', color: '#01A4FF', data: syncOffsetChartData.mcu2 },
+          {
+            key: 'HPC to MCU1',
+            // color: '#FF01D9',
+            color: '#01A4FF',
+            data: syncOffsetChartData.mcu1,
+          },
+          // { key: 'MCU 2', color: '#01A4FF', data: syncOffsetChartData.mcu2 },
         ]}
         unit="μs"
         // maxLineInfo={{ value: syncOffsetMaxValue, label: 'BaseLine' }}
@@ -95,7 +100,9 @@ const ChartsArea = ({
         style={{ position: 'relative', width: '100%', height: 294 }}
       />
       <div className="encarving-text1">Sensor1 - HPC - Fan1</div>
-      <div className="encarving-text2">Chassis Requirement (&lt; 10 ms)</div>
+      <div className="encarving-text2">
+        Electronic Controlled Suspension (&lt; 10 ms)
+      </div>
     </div>
   );
 };
